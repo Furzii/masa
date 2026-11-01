@@ -1,0 +1,20 @@
+# Trusted local deployment only. Public hosting requires a stronger access gateway.
+services:
+  app:
+    build: .
+    hostname: masaflow-local
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 40s
+    env_file: .env
+    environment:
+      MASAFLOW_HOST: 0.0.0.0
+      PORT: 4173
+      MASAFLOW_DATA_DIR: /data/realtime
+      MASAFLOW_STAFF_PIN: ${MASAFLOW_STAFF_PIN:?Set MASAFLOW_STAFF_PIN in .env}
+    ports:
+      - "${MASAFLOW_BIND_IP:-127.0.0.1}:4173:4173"
+    volumes:
+      - restaurant-data:/data
+volumes:
+  restaurant-data:
