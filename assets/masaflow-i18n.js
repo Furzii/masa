@@ -1,0 +1,277 @@
+(function () {
+  'use strict';
+  const dictionary = {
+    "Business access": "Acceso al negocio",
+    "Staff sign-in": "Acceso del personal",
+    "Manage orders, collect cash, and view your sales.": "Administra pedidos, cobra en efectivo y consulta tus ventas.",
+    "Staff password": "Contraseña del personal",
+    "Sign in": "Iniciar sesión",
+    "Sign out": "Cerrar sesión",
+    "You are signed in on this device.": "Tu sesión está abierta en este dispositivo.",
+    "Open order queue": "Abrir cola de pedidos",
+    "Order food as a customer": "Pedir comida como cliente",
+    "Too many sign-in attempts. Try again in 15 minutes.": "Demasiados intentos. Intenta de nuevo en 15 minutos.",
+    "Incorrect staff password.": "Contraseña del personal incorrecta.",
+    "Connection unavailable. Please try again.": "Sin conexión. Intenta de nuevo.",
+    "Staff session": "Sesión del personal",
+
+    'Inconsistent cash receipts excluded (all dates)':'Cobros inconsistentes excluidos (todas las fechas)',
+    'Inconsistent cash receipts excluded (all dates): {count}':'Cobros inconsistentes excluidos (todas las fechas): {count}',
+    'items':'productos','item':'producto','unavailable':'no disponible','available':'disponible','language':'Idioma', 'Spanish':'Español', 'English':'English',
+    'Operations':'Operaciones','Sales':'Ventas','Summary':'Resumen','Source':'Fuente','Sources':'Fuentes','Inspect source':'Ver fuente','Cash receipts':'Cobros en efectivo','Drawer variance':'Diferencia de caja','Paid-to-pickup time':'Tiempo de pago a entrega',
+    'Mexican Kitchen':'Cocina mexicana','Authentic Masa':'Masa auténtica','Crafted Daily':'Hecha cada día','Made with masa. Served with care.':'Hecho con masa. Servido con cuidado.',
+    'MasaFlow menu':'Menú de MasaFlow','MasaFlow dashboard':'Panel de MasaFlow','MasaFlow navigation':'Navegación de MasaFlow','Main navigation':'Navegación principal',
+    'Track order':'Seguir pedido','Staff':'Personal','Search menu':'Buscar en el menú','Search dishes':'Buscar platillos','Categories':'Categorías','Menu categories':'Categorías del menú','Our Menu':'Nuestro menú','View Cart':'Ver carrito','View your cart':'Ver tu carrito','Your Order':'Tu pedido','Close cart':'Cerrar carrito','Close customization':'Cerrar personalización',
+    'Choose your masa':'Elige tu masa','Choose 1 · Required':'Elige 1 · Obligatorio','Extra add-ons':'Extras','Choose up to 2 · Optional':'Elige hasta 2 · Opcional','Special instructions':'Indicaciones especiales','For example, no onions':'Por ejemplo, sin cebolla','Decrease quantity':'Reducir cantidad','Increase quantity':'Aumentar cantidad','Add to Order':'Agregar al pedido','Included':'Incluido','Sold out':'Agotado','All':'Todo','All Items':'Todos los productos',
+    'Review your dishes, then pay cash at the counter.':'Revisa tus platillos y paga en efectivo en la caja.','Your name':'Tu nombre','Your name for the order':'Tu nombre para el pedido','Order for':'Tipo de pedido','Counter pickup':'Recoger en caja','Takeout':'Para llevar','Dine in':'Comer aquí','Counter':'Caja','Table number':'Número de mesa','Subtotal':'Subtotal','Tax':'Impuesto','Total':'Total','Tax unconfigured · 0%':'Impuesto sin configurar · 0%','Pay cash at the counter.':'Paga en efectivo en la caja.','Your order waits for payment. The cashier records your cash before the kitchen starts your order.':'Tu pedido espera el pago. La caja registra el efectivo antes de que la cocina lo prepare.','Place Order · Pay Cash at Counter':'Enviar pedido · Pagar en efectivo en caja','Placing order…':'Enviando pedido…','Retry original order':'Reintentar pedido original','Checking saved order…':'Buscando pedido guardado…','No dishes match this search.':'No hay platillos que coincidan con la búsqueda.','Your cart is empty. Add a freshly made dish to begin.':'Tu carrito está vacío. Agrega un platillo para comenzar.','Unavailable dish':'Platillo no disponible','Remove':'Quitar','No extras available for this dish.':'No hay extras disponibles para este platillo.',
+    'A dish or option is sold out. Remove it and choose again.':'Un platillo o una opción se agotó. Quítalo y elige de nuevo.','A cart item is no longer available. Remove it before placing your order.':'Un producto del carrito ya no está disponible. Quítalo antes de enviar el pedido.','This dish is now sold out.':'Este platillo se agotó.','This dish is currently sold out.':'Este platillo está agotado.','A selected option is sold out. Choose an available option.':'Una opción seleccionada se agotó. Elige una disponible.','Choose an available masa and up to two extras.':'Elige una masa disponible y hasta dos extras.','Added to your order.':'Agregado a tu pedido.','Enter your name so we can identify your order.':'Escribe tu nombre para identificar tu pedido.','Choose available dishes and options before placing your order.':'Elige platillos y opciones disponibles antes de enviar el pedido.','Enter a valid table number.':'Escribe un número de mesa válido.',
+    'An earlier submission is unconfirmed. Retry the original order before editing it.':'Un envío anterior sigue sin confirmar. Reintenta el pedido original antes de editarlo.','The result is unconfirmed. Reconnect and retry the original order; it will not create a duplicate.':'El resultado sigue sin confirmar. Reconecta y reintenta el pedido original; no se creará un duplicado.','This submission conflicts with the saved order. Reload to recover it.':'Este envío no coincide con el pedido guardado. Recarga para recuperarlo.',
+    'Orders':'Pedidos','New order':'Nuevo pedido','＋ New order':'＋ Nuevo pedido','Register':'Caja','Kitchen':'Cocina','Pickup':'Entrega','Metrics':'Indicadores','Menu':'Menú','Ledger':'Caja','History':'Historial','CASH ONLY':'SOLO EFECTIVO','Kitchen operations':'Operación de cocina','Order Queue':'Cola de pedidos','Loading saved orders…':'Cargando pedidos guardados…','● Cash paid before prep':'● Pago en efectivo antes de preparar','Order queue summary':'Resumen de pedidos','Awaiting cash':'Esperando efectivo','Held before kitchen dispatch':'En espera antes de cocina','New paid orders':'Pedidos pagados nuevos','Ready to start cooking':'Listos para preparar','Preparing':'Preparando','In the kitchen now':'En cocina ahora','Ready for pickup':'Listo para recoger','Waiting to be handed over':'Esperando entrega','Awaiting upfront payment':'Esperando pago anticipado','Collect cash in full to release an order to the kitchen.':'Cobra el total en efectivo para enviar el pedido a cocina.','Manage cash drawer →':'Administrar caja →','Paid kitchen queue':'Pedidos pagados en cocina','Every order here has a recorded cash payment.':'Todos estos pedidos tienen un pago en efectivo registrado.','Filter kitchen queue':'Filtrar pedidos de cocina','All active':'Todos activos','New':'Nuevo','Ready':'Listo','Walk-in guest':'Cliente de mostrador','Collect cash':'Cobrar efectivo','No unpaid orders. New orders will wait here until cash is collected.':'No hay pedidos sin pagar. Los nuevos esperarán aquí hasta cobrar el efectivo.','New · paid':'Nuevo · pagado','Start preparing':'Iniciar preparación','Mark ready':'Marcar listo','Complete pickup':'Completar entrega','Paid at':'Hora de pago','✓ Paid in cash':'✓ Pagado en efectivo','The kitchen queue is clear':'La cola de cocina está vacía','Create an order and collect cash to dispatch it here.':'Crea un pedido y cobra en efectivo para enviarlo aquí.','Orders appear here when they reach this stage.':'Los pedidos aparecen aquí al llegar a esta etapa.','Order updated.':'Pedido actualizado.','The cash drawer is closed.':'La caja está cerrada.','Open a shift and record the starting float':'Abre un turno y registra el fondo inicial','before collecting cash.':'antes de cobrar efectivo.',
+    'Connection lost. Cash actions are paused. Reconnect and check the ledger before retrying.':'Conexión perdida. Las operaciones de caja están pausadas. Reconecta y revisa el registro antes de reintentar.','Connecting to the local service…':'Conectando al servicio local…','Order not found.':'Pedido no encontrado.','This order is already paid. Check the cash ledger.':'Este pedido ya está pagado. Revisa el registro de caja.','Open a drawer shift in Cash Ledger before collecting cash.':'Abre un turno de caja antes de cobrar efectivo.','Close cash payment':'Cerrar pago en efectivo','Total due':'Total por pagar','Change returned':'Cambio devuelto','Still due':'Falta pagar','Amount tendered':'Efectivo recibido','Set cash tendered':'Establecer efectivo recibido','Exact':'Exacto','Presets set the total tendered. Count the physical cash before finalizing. Return the change shown.':'Los botones establecen el total recibido. Cuenta el efectivo antes de finalizar y entrega el cambio indicado.','Cash numpad':'Teclado de efectivo','Backspace':'Borrar','Finalize · Paid cash':'Finalizar · Pagado en efectivo','Enter a valid amount with at most two decimal places.':'Escribe un importe válido con hasta dos decimales.','Saving payment…':'Guardando pago…','Paid · Cash':'Pagado · Efectivo','Cash tendered':'Efectivo recibido','Return change':'Entregar cambio','Done':'Listo','PAID · CASH':'PAGADO · EFECTIVO','UNPAID · Pay cash at counter':'SIN PAGAR · Pagar en efectivo en caja','Kitchen dispatch follows cash payment.':'El pedido llega a cocina después del pago en efectivo.','Tendered':'Recibido','Change':'Cambio','Cashier':'Cajero',
+    'Cash accountability':'Control de efectivo','Cash Ledger & History':'Registro de caja e historial','Upfront cash payments, drawer movements, and shift reconciliation.':'Pagos anticipados, movimientos de efectivo y conciliación de turnos.','Open cash drawer':'Abrir cajón','Order queue →':'Cola de pedidos →','Shift cash drawer':'Caja del turno','Loading drawer…':'Cargando caja…','Closed':'Cerrado','Cash transactions':'Transacciones de efectivo','Only finalized cash payments appear in this ledger.':'Aquí solo aparecen pagos en efectivo finalizados.','Order, guest, or cashier':'Pedido, cliente o cajero','Search cash transactions':'Buscar transacciones','Transaction shift filter':'Filtrar turno','All shifts':'Todos los turnos','Current open shift':'Turno abierto actual','Order / Guest':'Pedido / Cliente','Cash total':'Total efectivo','Fulfillment':'Entrega','Receipt':'Recibo','Shift drawer audits':'Auditorías de turnos','Saved expected balance, physical count, and over / short variance at close.':'Saldo esperado, conteo físico y diferencia al cerrar el turno.','Shift / Cashier':'Turno / Cajero','Starting float':'Fondo inicial','Expected':'Esperado','Counted':'Contado','Variance':'Diferencia','Cash drops':'Retiros de efectivo','Cash removed from the drawer with a saved reason.':'Efectivo retirado del cajón con motivo registrado.','Audit trail':'Registro de acciones','The latest 20 recorded actions.':'Las últimas 20 acciones registradas.','Expected in drawer':'Efectivo esperado','Short':'Faltante','Over':'Sobrante','Balanced drawer':'Caja cuadrada','● Shift open':'● Turno abierto','Drawer closed':'Caja cerrada','Start a shift to collect upfront cash payments.':'Abre un turno para recibir pagos anticipados.','Float + cash sales − drops':'Fondo + ventas − retiros','Opening drawer balance':'Saldo inicial de caja','Cash sales':'Ventas en efectivo','Cash dropped':'Efectivo retirado','Removed and recorded':'Retirado y registrado','Cash sales = tendered − change':'Ventas = recibido − cambio','Acting cashier':'Cajero responsable','Record a cash drop':'Registrar retiro','Enter cash removed for a safe deposit. The drop cannot exceed the expected drawer balance.':'Registra efectivo retirado para resguardo. No puede superar el saldo esperado.','Cash removed ($)':'Efectivo retirado ($)','Reason / deposit reference':'Motivo / referencia','Safe deposit':'Depósito de resguardo','Record cash drop':'Registrar retiro','Close & audit this shift':'Cerrar y auditar turno','Count the physical drawer, including the float. The difference is recorded permanently when this shift closes.':'Cuenta el efectivo físico, incluido el fondo. La diferencia se registra al cerrar el turno.','Actual cash counted ($)':'Efectivo físico contado ($)','Close & save audit':'Cerrar y guardar auditoría','Record the starting cash float before accepting payments. Only paid orders are dispatched to the kitchen.':'Registra el fondo inicial antes de cobrar. Solo los pedidos pagados llegan a cocina.','Starting float ($)':'Fondo inicial ($)','Cashier name':'Nombre del cajero','Open cash shift':'Abrir turno de caja','Completed':'Completado','No cash transactions match your search.':'No hay transacciones que coincidan con la búsqueda.','There is no open shift. Open a drawer to start accepting cash.':'No hay turno abierto. Abre la caja para recibir efectivo.','No cash transactions yet. Finalized upfront payments will appear here.':'Aún no hay transacciones. Los pagos finalizados aparecerán aquí.','No closed shifts yet. Count and close a shift to save its audit.':'Aún no hay turnos cerrados. Cuenta y cierra un turno para guardar la auditoría.','No cash drops recorded.':'No hay retiros registrados.','Recorded actions will appear here as you use the cash drawer.':'Las acciones aparecerán aquí al usar la caja.','Cash shift opened. Upfront payments are now available.':'Turno abierto. Ya puedes recibir pagos anticipados.','Enter a reason or reference for the cash drop.':'Escribe un motivo o referencia para el retiro.','The cash drop exceeds the expected drawer balance.':'El retiro supera el saldo esperado de caja.','Cash drop recorded.':'Retiro registrado.','Shift closed. Drawer audit saved.':'Turno cerrado. Auditoría guardada.',
+    'Search menu items':'Buscar productos','Search items, categories, or descriptions…':'Buscar productos, categorías o descripciones…','＋ Add New Item':'＋ Agregar producto','Menu Management':'Administrar menú','Keep today’s menu and modifiers ready for the register.':'Mantén el menú y sus opciones listos para caja.','Cash-only service':'Servicio en efectivo','Filter menu by category':'Filtrar por categoría','Menu items':'Productos del menú','Menu activity':'Actividad del menú','Changes are recorded in the audit log.':'Los cambios se registran en el historial.','Add New Item':'Agregar producto','Edit Menu Item':'Editar producto','Close item editor':'Cerrar editor','Item name':'Nombre del producto','Category':'Categoría','Price (MXN)':'Precio (MXN)','Use pesos and centavos, for example 85.00.':'Usa pesos y centavos, por ejemplo 85.00.','Description':'Descripción','Image URL':'URL de imagen','Optional':'Opcional','Available for ordering':'Disponible para pedidos','Modifier prices & availability':'Precios y disponibilidad de opciones','Finalized receipts retain their original prices. Mark an item unavailable when you cannot fulfill it.':'Los recibos conservan sus precios originales. Desactiva un producto si no puedes prepararlo.','Cancel':'Cancelar','Save Item':'Guardar producto','Time unavailable':'Hora no disponible','No description added.':'Sin descripción.','No modifiers':'Sin opciones','Available':'Disponible','Unavailable':'No disponible','No menu items match this view. Try another search or add a new item.':'No hay productos en esta vista. Cambia la búsqueda o agrega uno.','No menu changes recorded yet.':'Aún no hay cambios de menú registrados.','That menu item is no longer available.':'Este producto ya no está disponible.','Enter an item name and category.':'Escribe el nombre y la categoría.','Enter a price greater than zero with no more than two decimal places.':'Escribe un precio mayor que cero con hasta dos decimales.','Image URLs must start with https:// or http://.':'La URL debe comenzar con https:// o http://.','Saving…':'Guardando…','Menu service unavailable. Refresh this page to reconnect.':'Servicio de menú no disponible. Recarga para reconectar.','Unable to load the menu. Refresh this page to reconnect.':'No se pudo cargar el menú. Reconecta para continuar.','Legacy USD prices. Enter the intended MXN prices before saving; no currency conversion is applied.':'Precios anteriores en USD. Escribe los precios deseados en MXN; no se aplica conversión.',
+    'Your order':'Tu pedido','Loading your order…':'Cargando tu pedido…','Order tracking':'Seguimiento del pedido','Back to menu':'Volver al menú','Awaiting payment':'Esperando pago','Received':'Recibido','Ready to collect':'Listo para recoger','Picked up':'Entregado','Order details':'Detalle del pedido','Waiting for cash at the counter':'Esperando efectivo en caja','Pay your total at the counter. Preparation begins after the cashier records your payment.':'Paga el total en caja. La preparación comienza después de registrar el pago.','Payment recorded. Your order is in the kitchen queue.':'Pago registrado. Tu pedido está en la cola de cocina.','The kitchen is preparing your order.':'La cocina está preparando tu pedido.','Your order is ready. Show this order number at the counter.':'Tu pedido está listo. Muestra este número en caja.','Your order has been handed over. Thank you!':'Tu pedido fue entregado. ¡Gracias!','No order selected':'No se seleccionó un pedido','Use the tracking link from your order or place an order from the menu.':'Usa el enlace de tu pedido o crea uno en el menú.','We could not find this order':'No encontramos este pedido','Check your tracking link. Your order number alone is not a tracking link.':'Revisa el enlace de seguimiento. El número de pedido por sí solo no es un enlace.','Unable to load your order':'No se pudo cargar tu pedido','Reconnect to the local service. The last confirmed order remains visible when available.':'Reconecta al servicio local. Se conserva el último pedido confirmado cuando está disponible.','Live order status':'Estado del pedido en vivo','Last confirmed status · reconnecting':'Último estado confirmado · reconectando','Recorded payment could not be verified. Please ask the cashier.':'No se pudo verificar el pago registrado. Consulta en caja.','UNPAID':'SIN PAGAR','Paid in cash':'Pagado en efectivo','Awaiting cash payment':'Esperando pago en efectivo','Tax not configured':'Impuesto sin configurar'
+  };
+  Object.assign(dictionary,{
+    'The order service could not load. Reload this page to try again.':'No se pudo cargar el servicio de pedidos. Reconecta para continuar.',
+    'The cash ledger service could not load. Reload this page to try again.':'No se pudo cargar el registro de caja. Reconecta para continuar.',
+    'Could not place this order. Please try again.':'No se pudo enviar el pedido. Inténtalo de nuevo.',
+    'Could not update availability.':'No se pudo actualizar la disponibilidad.',
+    'Could not save this item. Try again.':'No se pudo guardar el producto. Inténtalo de nuevo.',
+    'Enter a positive amount with at most two decimal places.':'Escribe un importe positivo con hasta dos decimales.',
+    'The transaction result could not be confirmed. Reconnect and check the ledger before retrying.':'No se pudo confirmar el resultado. Reconecta y revisa el registro antes de reintentar.',
+    'The action could not be saved.':'No se pudo guardar la acción.',
+    'Service unavailable.':'Servicio no disponible.',
+    'Menu item not found.':'Producto no encontrado.',
+    'Add at least one item to the order.':'Agrega al menos un producto.',
+    'Customer name is required.':'Escribe el nombre del cliente.',
+    'Invalid order type.':'Tipo de pedido no válido.',
+    'Invalid table number.':'Número de mesa no válido.',
+    'Invalid menu item.':'Producto no válido.',
+    'Quantity must be between 1 and 99.':'La cantidad debe estar entre 1 y 99.',
+    'Invalid modifier selection.':'Opciones no válidas.',
+    'A selected modifier is unavailable.':'Una opción seleccionada no está disponible.',
+    'A modifier has legacy prices. Reprice all modifiers before ordering.':'Una opción tiene precios anteriores. Actualiza todas las opciones antes de pedir.',
+    'Choose one masa base and up to two extras.':'Elige una masa y hasta dos extras.',
+    'Invalid tax configuration.':'Configuración de impuesto no válida.',
+    'Only an unpaid draft can be finalized.':'Solo se puede cobrar un pedido sin pagar.',
+    'This draft uses legacy currency. Rebuild it using the current menu before taking payment.':'Este pedido usa moneda anterior. Créalo de nuevo con el menú actual antes de cobrar.',
+    'Open a cash drawer shift and record the starting float first.':'Primero abre un turno y registra el fondo inicial.',
+    'Close the legacy currency drawer shift before taking current-currency payments.':'Cierra el turno en moneda anterior antes de cobrar en la moneda actual.',
+    'Cash payment must be verified before kitchen dispatch.':'Se debe verificar el pago antes de enviar a cocina.',
+    'Another kitchen screen already updated this ticket. Check its current status.':'Otra pantalla actualizó el pedido. Revisa su estado actual.',
+    'This order cannot advance.':'Este pedido no puede avanzar.',
+    'A drawer shift is already open.':'Ya hay un turno abierto.',
+    'Open a drawer shift first.':'Primero abre un turno de caja.',
+    'Cash drop exceeds the expected drawer balance.':'El retiro supera el saldo esperado.',
+    'No drawer shift is open.':'No hay turno abierto.',
+
+
+
+
+    'Note:':'Nota:','Audit trail · original record text':'Registro de acciones · texto original',
+    'Menu activity · original record text':'Actividad del menú · texto original',
+    'Starting float':'Fondo inicial','Drawer count':'Conteo de caja','Cash drop':'Retiro de efectivo'
+  });
+  const patterns = [
+    [/^● Shift open · (.+)$/,m=>`● Turno abierto · ${m[1]}`],
+    [/^(.+) has legacy (.+) prices\. Reprice the dish in (.+) before ordering\.$/,m=>`${m[1]} tiene precios anteriores en ${m[2]}. Actualiza el precio en ${m[3]} antes de pedir.`],
+    [/^(.+) is sold out(?:\. Rebuild this order before taking payment)?\.$/,m=>`${m[1]} está agotado. Revisa el pedido antes de cobrar.`],
+    [/^Insufficient cash\. (.+) still due\.$/,m=>`Efectivo insuficiente. Falta pagar ${m[1]}.`],
+    [/^(\d+) items?$/, m=>`${m[1]} ${m[1]==='1'?'producto':'productos'}`],
+    [/^(\d+) paid active orders? · (\d+) awaiting cash$/, m=>`${m[1]} pedidos pagados activos · ${m[2]} esperando efectivo`],
+    [/^(\d+) items? shown · (\d+) available · (\d+) unavailable$/,m=>`${m[1]} productos · ${m[2]} disponibles · ${m[3]} no disponibles`],
+    [/^(\d+) finalized cash payments?$/,m=>`${m[1]} pagos en efectivo finalizados`],
+    [/^(\d+) cash transactions? shown · unpaid drafts are excluded$/,m=>`${m[1]} transacciones · pedidos sin pagar excluidos`],
+    [/^(.+) base price$/,m=>`${m[1]} precio base`], [/^Add to Order · (.+)$/,m=>`Agregar al pedido · ${m[1]}`],
+    [/^(.+) is now in the kitchen queue\.$/,m=>`${m[1]} ya está en la cola de cocina.`],
+    [/^Dine in(?: · Table (\d+))?$/,m=>`Comer aquí${m[1]?` · Mesa ${m[1]}`:''}`],
+    [/^Takeout · Pay cash at counter$/,()=> 'Para llevar · Pagar en efectivo en caja'],[/^Counter pickup · Pay cash at counter$/,()=> 'Recoger en caja · Pagar en efectivo'],
+    [/^Table (\d+)$/,m=>`Mesa ${m[1]}`], [/^Customize (.+)$/,m=>`Personalizar ${m[1]}`],
+    [/^View your cart, (\d+) items, (.+)$/,m=>`Ver tu carrito, ${m[1]} productos, ${m[2]}`],
+    [/^(Increase|Decrease) (.+) quantity$/,m=>`${m[1]==='Increase'?'Aumentar':'Reducir'} cantidad de ${m[2]}`], [/^Remove (.+)$/,m=>`Quitar ${m[1]}`],
+    [/^Edit price for (.+)$/,m=>`Editar precio de ${m[1]}`], [/^Edit (.+)$/,m=>`Editar ${m[1]}`],
+    [/^(.+) available for ordering$/,m=>`${m[1]} disponible para pedidos`],
+    [/^(.+) price in MXN$/,m=>`Precio de ${m[1]} en MXN`],
+    [/^(.+) is now (unavailable|available)\.$/,m=>`${m[1]} ${m[2]==='available'?'ya está disponible':'ya no está disponible'}.`],
+    [/^(.+) (updated|added) to the menu\.$/,m=>`${m[1]} ${m[2]==='added'?'agregado':'actualizado'} en el menú.`],
+    [/^Enter a valid price for (.+)\.$/,m=>`Escribe un precio válido para ${m[1]}.`],
+    [/^No (new|preparing|ready) orders$/,m=>`No hay pedidos ${m[1]==='new'?'nuevos':m[1]==='ready'?'listos':'en preparación'}`],
+    [/^Opened by (.+) · Closed by (.+)$/,m=>`Abierto por ${m[1]} · Cerrado por ${m[2]}`],
+    [/^Opened (.+) · (.+)$/,m=>`Abierto ${translate(m[1])} · ${m[2]}`],
+    [/^(Short|Over|Balanced) (.+)$/,m=>`${m[1]==='Short'?'Faltante':m[1]==='Over'?'Sobrante':'Cuadrado'} ${m[2]}`],
+    [/^(.+) must be a (?:dollar|peso) amount with no more than two decimal places\.$/,m=>`${m[1]} debe ser un importe con hasta dos decimales.`],
+    [/^(.+) must be (zero or greater|greater than zero)\.$/,m=>`${m[1]} debe ser ${m[2]==='greater than zero'?'mayor que cero':'cero o mayor'}.`]
+  ];
+  // Screens redesigned to the approved mockups.
+  Object.assign(dictionary,{
+    'Live Sync Connected':'Sincronización activa','Reconnecting…':'Reconectando…',
+    'Connection lost · cash actions paused. Check the ledger before retrying.':'Sin conexión · cobros en pausa. Revisa el registro antes de reintentar.',
+    'Reconnecting… your order is saved.':'Reconectando… tu pedido está guardado.',
+    'MasaFlow order queue':'Cola de pedidos de MasaFlow','Orders awaiting cash':'Pedidos esperando efectivo','No orders awaiting cash':'Ningún pedido espera efectivo',
+    'Cash drawer':'Caja','Cash drawer closed · open a shift':'Caja cerrada · abre un turno','Drawer closed':'Caja cerrada','New':'Nuevo','Metrics':'Indicadores',
+    'Awaiting Cash':'Esperando efectivo','Collect cash in full to release an order to the kitchen.':'Cobra el total en efectivo para enviar el pedido a cocina.',
+    'Manage cash drawer':'Administrar caja','Placed At':'Hecho a las','Paid At':'Pagado a las','Total Due (Cash)':'Total a pagar (efectivo)','Paid (Cash)':'Pagado (efectivo)',
+    'Collect Cash':'Cobrar en efectivo','Cancel order':'Cancelar pedido','Keep order':'Conservar pedido','Cancel this order?':'¿Cancelar este pedido?','Order cancelled.':'Pedido cancelado.',
+    'Paid Kitchen Queue':'Cola de cocina pagada','Every order here has a recorded cash payment.':'Cada pedido aquí tiene un pago en efectivo registrado.',
+    'All active':'Todos activos','Start Preparing':'Empezar a preparar','Mark as Ready':'Marcar como listo','Complete Pickup':'Entregar pedido',
+    'Waiting for new orders...':'Esperando nuevos pedidos...','No new orders right now':'No hay pedidos nuevos','No orders are being prepared':'No hay pedidos en preparación','No orders are ready yet':'Aún no hay pedidos listos',
+    'New · paid':'Nuevo · pagado','Ready for pickup':'Listo para recoger','Order updated.':'Pedido actualizado.',
+    'Live Statistics':'Estadísticas en vivo','Live statistics and kitchen alerts':'Estadísticas en vivo y alertas de cocina','Active':'Activos','Done':'Listos','Awaiting cash':'Esperando efectivo',
+    'Kitchen Alert':'Alerta de cocina','Critical':'Crítico','All clear':'Todo en orden','Nothing needs attention':'Nada requiere atención',
+    'Cash Drawer':'Caja','Expected in drawer':'Esperado en caja','Shift opened':'Turno abierto','Open a shift':'Abrir un turno',
+    'No unpaid orders. New orders wait here until cash is collected.':'No hay pedidos sin pagar. Los nuevos esperan aquí hasta cobrar el efectivo.',
+    'The cash drawer is closed.':'La caja está cerrada.','Open a shift and record the starting float':'Abre un turno y registra el fondo inicial','before collecting cash.':'antes de cobrar.',
+    'Order service unavailable':'Servicio de pedidos no disponible','The order service is not responding. Check that it is running, then reload this page.':'El servicio de pedidos no responde. Verifica que esté en marcha y recarga la página.',
+
+    'Walk-in guest':'Cliente en mostrador','No {items}':'Sin {items}','List at most 12 included toppings.':'Escribe como máximo 12 complementos incluidos.','Included toppings must be unique.':'Los complementos incluidos no se pueden repetir.','Menu currency changed. Rebuild this order before taking payment.':'Cambió la moneda del menú. Rehaz el pedido antes de cobrar.','Dish name and category are required.':'Escribe el nombre y la categoría del platillo.','Image URL must start with https:// or http://.':'La URL de la imagen debe empezar con https:// o http://.','Invalid topping selection.':'Complementos no válidos.','Only an unpaid order can be cancelled.':'Solo se puede cancelar un pedido sin pagar.','That change can no longer be undone here.':'Ese cambio ya no se puede deshacer aquí.','Unsupported saved data version.':'Versión de datos guardados no compatible.','Submission ID must be a UUID.':'El identificador de envío no es válido.','This submission ID was already used for a different order.':'Este identificador de envío ya se usó en otro pedido.','Unsupported order currency.':'Moneda del pedido no compatible.','Availability must be true or false.':'Disponibilidad no válida.','Modifier not found.':'Opción no encontrada.','Invalid availability.':'Disponibilidad no válida.','Invalid service state.':'Estado del servicio no válido.','Note:':'Nota:','Toppings on the side':'Complementos aparte','Not in this order':'No en este pedido',
+    'Collect Cash ':'Cobrar en efectivo','Total due':'Total a pagar','Change returned':'Cambio a entregar','Still due':'Falta pagar','Amount tendered':'Monto recibido',
+    'Presets set the total tendered. Count the physical cash before finalizing. Return the change shown.':'Los botones fijan el total recibido. Cuenta el efectivo antes de finalizar y entrega el cambio indicado.',
+    'Finalize · Paid cash':'Finalizar · Pagado en efectivo','Saving payment…':'Guardando pago…',
+    'Paid · Cash':'Pagado · Efectivo','Cash tendered':'Efectivo recibido','Return change':'Entregar cambio','Done ':'Listo','Close cash payment':'Cerrar cobro','Set cash tendered':'Fijar efectivo recibido','Cash numpad':'Teclado numérico','Backspace':'Borrar',
+    'Tax unconfigured · 0%':'Impuesto sin configurar · 0%','Tax':'Impuesto',
+
+
+    'Open a drawer shift before opening the cash drawer.':'Abre un turno antes de abrir el cajón.','Open a drawer shift in History & Ledger before collecting cash.':'Abre un turno en Historial y registro antes de cobrar.',
+    'Confirm':'Confirmar','Cancel':'Cancelar','Delete item':'Eliminar producto',
+    'Business Analytics':'Análisis del negocio','Real-time performance metrics for MasaFlow':'Indicadores de MasaFlow en tiempo real','Open advanced analytics and AI summary':'Abrir análisis avanzado y resumen con IA',
+    'Analytics period':'Periodo de análisis','Daily':'Diario','Weekly':'Semanal','Monthly':'Mensual','Yearly':'Anual','Date in period':'Fecha del periodo',
+    'Cash sales summary':'Resumen de ventas en efectivo','Total Revenue':'Ingresos totales','Net':'Neto','Total Orders':'Pedidos totales','Avg. ticket':'Ticket promedio',
+    'Peak Hour':'Hora pico','Most activity recorded':'Mayor actividad registrada','Avg. Prep':'Prep. promedio','Avg. Prep Time':'Tiempo prom. de preparación','Time':'Hora','From payment to pickup':'Del pago a la entrega',
+    'Paid fulfillment':'Pedidos pagados','in kitchen':'en cocina','ready for pickup':'listos para recoger','completed':'completados','Fulfillment of paid orders':'Estado de pedidos pagados',
+    'Sales trends and top items':'Tendencias de ventas y productos principales','View exact totals':'Ver totales exactos','Cash receipts by payment time':'Cobros por hora de pago','Period':'Periodo','Receipts':'Cobros','Transactions':'Transacciones',
+    'Exact amounts and transaction counts are available in the table below.':'Los importes exactos y el número de transacciones están en la tabla de abajo.',
+    'Top Selling Items':'Productos más vendidos','Quantity on paid orders, including orders still being prepared.':'Cantidad en pedidos pagados, incluidos los que aún se preparan.',
+    'Bar chart of the top selling items by quantity. The list that follows has the same figures.':'Gráfica de barras de los productos más vendidos. La lista siguiente tiene las mismas cifras.',
+    'Recent Paid Orders':'Pedidos pagados recientes','Recent Activity':'Actividad reciente','View':'Ver','Full Ledger':'registro completo','View Full Ledger':'Ver registro completo','Recent verified paid cash orders':'Pedidos pagados en efectivo recientes',
+    'Order ID':'Pedido','Customer':'Cliente','Items':'Productos','Amount':'Importe','Status':'Estado','New ':'Nuevo','Preparing':'En preparación','Ready':'Listo','Completed':'Completado',
+    'No paid cash receipts in this period.':'No hay cobros en efectivo en este periodo.','No items sold in this period.':'No se vendieron productos en este periodo.','No paid orders in this period.':'No hay pedidos pagados en este periodo.',
+    'Cash receipts are not loaded yet.':'Los cobros aún no se cargan.','Unable to load cash receipts. Refresh this page to reconnect.':'No se pudieron cargar los cobros. Recarga la página para reconectar.','MasaFlow Analytics':'Análisis MasaFlow',
+    'Sales include every verified paid cash order, regardless of fulfillment status. Cash tender minus change equals the receipt total. Draft orders, starting float, and cash drops are excluded.':'Las ventas incluyen cada pedido pagado en efectivo y verificado, sin importar su estado. Efectivo recibido menos cambio es igual al total del cobro. Se excluyen pedidos sin pagar, fondo inicial y retiros.',
+    'Tax is currently set to 0%; configure it before charging tax.':'El impuesto está en 0%; configúralo antes de cobrar impuestos.',
+    'Menu history and audit log':'Historial del menú y bitácora','Search menu items, categories, or descriptions...':'Buscar productos, categorías o descripciones...','Add New Item':'Agregar producto','All Items':'Todos',
+    'In Stock':'Disponible','Out of Stock':'Agotado','In stock':'Disponible','(out of stock)':'(agotado)','SOLD OUT':'AGOTADO','FOR TODAY':'POR HOY','No description added.':'Sin descripción.',
+    'No menu items match this view. Try another search or add a new item.':'Ningún producto coincide. Prueba otra búsqueda o agrega un producto.','No menu items yet.':'Aún no hay productos.',
+    'Add New Item ':'Agregar producto','Edit Menu Item':'Editar producto','Close item editor':'Cerrar editor','Live Preview':'Vista previa','New menu item':'Nuevo producto','The description shows here.':'Aquí aparece la descripción.',
+    'Item Title':'Nombre','Category':'Categoría','Base Price (MXN)':'Precio base (MXN)','Use pesos and centavos, for example 85.00':'Usa pesos y centavos, por ejemplo 85.00','Description':'Descripción','Image URL':'URL de imagen','(optional)':'(opcional)',
+    'Included Toppings':'Complementos incluidos','Customers can remove these. Example: Cilantro, Chopped Onion, Limes':'Los clientes pueden quitarlos. Ejemplo: cilantro, cebolla picada, limón',
+    'Modifier prices & availability':'Precios y disponibilidad de opciones','Finalized receipts keep their original prices. Mark an item out of stock when you cannot make it.':'Los cobros finalizados conservan su precio original. Marca un producto como agotado cuando no puedas prepararlo.',
+    'Save Changes':'Guardar cambios','Add Item':'Agregar producto','Saving…':'Guardando…','Menu Updated':'Menú actualizado','Legacy USD prices. Enter the intended MXN prices before saving; no currency conversion is applied.':'Precios anteriores en USD. Escribe los precios en MXN antes de guardar; no se convierte la moneda.',
+    'History & Audit Log':'Historial y bitácora','Close menu history':'Cerrar historial','Filter menu history':'Filtrar historial','All Logs':'Todo','Price Changes':'Precios',"Stock 86'd":'Agotados','Added Items':'Agregados',
+    'Undo':'Deshacer','Restore Stock':'Reactivar','No menu changes recorded yet.':'Aún no hay cambios en el menú.','to':'a',
+    'It disappears from the customer menu right away. Past orders keep their record. Unpaid orders containing it must be rebuilt.':'Desaparece del menú de clientes de inmediato. Los pedidos anteriores conservan su registro. Los pedidos sin pagar que lo incluyan deben rehacerse.',
+    'Open Cash Drawer':'Abrir cajón','History & Ledger':'Historial y registro','Search orders, guests, or cashiers...':'Buscar pedidos, clientes o cajeros...','Search cash transactions':'Buscar transacciones',
+    'Filter by order status':'Filtrar por estado','All Status':'Todos','In Kitchen':'En cocina','Select date range':'Elegir fechas','From date':'Desde','To date':'Hasta','Transaction shift filter':'Filtro de turno','All shifts':'Todos los turnos','Current open shift':'Turno actual',
+    'Quick date range':'Rango rápido','All Time':'Todo','Today':'Hoy','Yesterday':'Ayer','Last 7 Days':'Últimos 7 días',
+    'Transaction History':'Historial de transacciones','Export':'Exportar','Date & Time':'Fecha y hora','Action':'Acción','Cashier:':'Cajero:',
+    'No transactions found':'No se encontraron transacciones',"We couldn't find any orders matching your current filters or search criteria.":'No encontramos pedidos con estos filtros o esta búsqueda.','Clear All Filters':'Quitar filtros',
+    'No transactions to show':'No hay transacciones','No cash transactions yet. Finalized upfront payments will appear here.':'Aún no hay transacciones. Aquí aparecerán los cobros finalizados.','Transaction pages':'Páginas de transacciones',
+    'Previous page':'Página anterior','Next page':'Página siguiente','System Audit Log':'Bitácora del sistema','Recorded actions will appear here as you use the cash drawer.':'Las acciones registradas aparecerán aquí al usar la caja.',
+    'Shift Cash Drawer':'Caja del turno','Shift open':'Turno abierto','Starting float':'Fondo inicial','Opening drawer balance':'Saldo inicial','Cash sales':'Ventas en efectivo','Cash dropped':'Retirado','Removed and recorded':'Retirado y registrado',
+    'Float + cash sales − drops':'Fondo + ventas − retiros','Tendered':'Recibido','· Change returned':'· Cambio entregado','Acting cashier':'Cajero en turno','Record a cash drop':'Registrar retiro',
+    'Enter cash removed for a safe deposit. The drop cannot exceed the expected drawer balance.':'Escribe el efectivo retirado para la caja fuerte. No puede superar el saldo esperado.','Cash removed ($)':'Efectivo retirado ($)','Reason / deposit reference':'Motivo / referencia','Record cash drop':'Registrar retiro',
+    'Close & audit this shift':'Cerrar y auditar el turno','Count the physical drawer, including the float. The difference is recorded permanently when this shift closes.':'Cuenta el efectivo de la caja, incluido el fondo. La diferencia queda registrada al cerrar el turno.',
+    'Actual cash counted ($)':'Efectivo contado ($)','Close & save audit':'Cerrar y guardar auditoría','Balanced':'Cuadrado','Balanced drawer':'Caja cuadrada','Short':'Faltante','Over':'Sobrante',
+    'Record the starting cash float before accepting payments. Only paid orders are dispatched to the kitchen.':'Registra el fondo inicial antes de cobrar. Solo los pedidos pagados pasan a cocina.','Starting float ($)':'Fondo inicial ($)','Cashier name':'Nombre del cajero','Open cash shift':'Abrir turno',
+    'Shift Drawer Audits':'Auditorías de turno','Shift / Cashier':'Turno / cajero','Closed':'Cierre','Expected':'Esperado','Counted':'Contado','Variance':'Diferencia','No closed shifts yet. Count and close a shift to save its audit.':'Aún no hay turnos cerrados. Cuenta y cierra un turno para guardar su auditoría.',
+    'Cash Drops':'Retiros de efectivo','No cash drops recorded.':'No hay retiros registrados.','Cash shift opened. Upfront payments are now available.':'Turno abierto. Ya puedes cobrar.','Cash drop recorded.':'Retiro registrado.','Shift closed. Drawer audit saved.':'Turno cerrado. Auditoría guardada.',
+    'Mexican kitchen':'Cocina mexicana','See All':'Ver todo','All':'Todo','Choose Your Masa':'Elige tu masa','Required · choose 1':'Obligatorio · elige 1','Included Veggies & Sides':'Verduras y complementos incluidos','On the side':'Aparte',
+    'Extra Add-Ons':'Extras','Optional · up to 2':'Opcional · hasta 2','Special Instructions':'Indicaciones especiales','Free':'Gratis','Sold out':'Agotado','Customize':'Personalizar',
+    'Complete Order':'Completar pedido','Your Name':'Tu nombre','Name for your order':'Nombre para tu pedido','Phone Number (Optional)':'Teléfono (opcional)','Order For':'Tipo de pedido','Table Number':'Número de mesa','Place Order':'Enviar pedido','Placing Order…':'Enviando pedido…',
+    'Pay in Cash at the Counter':'Paga en efectivo en caja','The kitchen starts once the cashier records your cash.':'La cocina empieza cuando el cajero registra tu pago.','Remove':'Quitar','Retry original order':'Reintentar pedido original',
+    'Your cart is empty. Add a freshly made dish to begin.':'Tu carrito está vacío. Agrega un platillo para empezar.','No dishes match this search.':'Ningún platillo coincide con la búsqueda.','Added to your order.':'Agregado a tu pedido.',
+    'Enter a valid phone number, for example (555) 000-0000, or leave it blank.':'Escribe un teléfono válido, por ejemplo (55) 1234-5678, o déjalo vacío.','Enter a valid phone number or leave it blank.':'Escribe un teléfono válido o déjalo vacío.',
+    'This submission conflicts with the saved order. Reload to recover it.':'Este envío no coincide con el pedido guardado. Recarga para recuperarlo.','Choose an available masa and up to two extras.':'Elige una masa disponible y hasta dos extras.',
+    'The menu could not be loaded. It will appear as soon as the connection is back.':'No se pudo cargar el menú. Aparecerá en cuanto vuelva la conexión.','Loading the menu…':'Cargando el menú…',
+    'MasaFlow pickup board':'Tablero de entregas de MasaFlow','MasaFlow order tracking':'Seguimiento de pedido MasaFlow','Pickup Board':'Tablero de entregas','Your number shows here when it is ready.':'Tu número aparece aquí cuando esté listo.',
+    'Order Number':'Número de pedido','Pickup At':'Recoger en','Back to the menu':'Volver al menú','Ready for Pickup':'Listo para recoger','Nothing is waiting right now.':'Nada espera en este momento.','In the Kitchen':'En cocina','Cooking':'Cocinando','Up next':'Sigue',
+    'The kitchen is all caught up.':'La cocina está al día.',"It's Ready!":'¡Está listo!','Please head to the counter to pick up your order.':'Pasa a la caja por tu pedido.','Got it!':'¡Entendido!','Track my order':'Seguir mi pedido',
+    'Please keep this screen open until your food is ready':'Mantén esta pantalla abierta hasta que tu comida esté lista','Order here':'Pide aquí','Order something else':'Pedir algo más','Items in this order':'Productos del pedido','Order progress':'Avance del pedido',
+    'Order Not Found':'Pedido no encontrado',"We can't find that order":'No encontramos ese pedido','Check the link, or ask at the counter.':'Revisa el enlace o pregunta en caja.',
+    'Pay at Counter':'Pagar en caja','Pay at the Counter':'Paga en caja','Show this number to the cashier. Cooking starts once cash is collected.':'Muestra este número al cajero. La cocina empieza al cobrar.',
+    'Order Received':'Pedido recibido','Paid in cash. The kitchen will start shortly.':'Pagado en efectivo. La cocina empezará pronto.','In Kitchen ':'En cocina','Preparing…':'Preparando…',"We'll let you know the moment it is ready.":'Te avisamos en cuanto esté listo.',
+    'Order Ready!':'¡Pedido listo!','Please pick it up at the counter.':'Recógelo en la caja.','Picked Up':'Entregado','Enjoy!':'¡Buen provecho!','Thanks for ordering with MasaFlow.':'Gracias por pedir en MasaFlow.',
+    'Cancelled':'Cancelado','Order Cancelled':'Pedido cancelado','This order was cancelled before payment. Order again any time.':'Este pedido se canceló antes de pagar. Puedes pedir de nuevo cuando quieras.',
+    '(done)':'(hecho)','(not yet)':'(pendiente)','(up next)':'(siguiente)','Order Placed':'Pedido hecho','Cash Paid':'Pagado en efectivo','Total to Pay (Cash)':'Total a pagar (efectivo)','Total (Not Charged)':'Total (sin cobrar)','done':'hecho','next':'siguiente','Quantity':'Cantidad'
+  });
+  const auditActions={'order draft':'pedido por cobrar','order cancelled':'pedido cancelado','cash payment':'pago en efectivo','kitchen status':'cocina','shift open':'apertura de turno','shift close':'cierre de turno','cash drop':'retiro de efectivo','menu price':'precio','menu stock':'disponibilidad','menu add':'producto agregado','menu edit':'producto editado','menu delete':'producto eliminado','modifier edit':'opción editada','drawer kick requested':'apertura de cajón','manual drawer kick':'apertura manual de cajón','drawer kick result':'resultado del cajón'};
+  const count=(n,one,many)=>`${n} ${n==='1'?one:many}`;
+  patterns.push(
+    [/^(\d+) active orders? being prepared · (\d+) awaiting cash$/,m=>`${count(m[1],'pedido activo','pedidos activos')} en preparación · ${m[2]} esperando efectivo`],
+    [/^(\d+) orders? awaiting cash$/,m=>`${count(m[1],'pedido espera','pedidos esperan')} efectivo`],
+    [/^(?:Cash drawer|Drawer) open · (.+)$/,m=>`Caja abierta · ${m[1]}`],
+    [/^Out: (.+)$/,m=>`Agotado: ${m[1]}`],[/^Prep: (\d+) × (.+)$/,m=>`Preparar: ${m[1]} × ${m[2]}`],[/^Avg\. wait today: (\d+) min$/,m=>`Espera promedio hoy: ${m[1]} min`],
+    [/^#(MF-\d+) for (.+) \((.+)\) has not been paid\. Cancelling removes it from the queue\.$/,m=>`#${m[1]} de ${m[2]} (${m[3]}) no se ha pagado. Al cancelarlo sale de la cola.`],
+    [/^Updated (.+)$/,m=>`Actualizado ${m[1]}`],[/^(.+) · Monday–Sunday$/,m=>`${m[1]} · lunes a domingo`],
+    [/^(\d+)% of sales$/,m=>`${m[1]}% de las ventas`],[/^(\d+) completed$/,m=>`${count(m[1],'completado','completados')}`],
+    [/^(Hourly|Daily|Monthly) Revenue Trend$/,m=>`Ingresos ${{Hourly:'por hora',Daily:'por día',Monthly:'por mes'}[m[1]]}`],
+    [/^Amounts by payment time in (.+)\.$/,m=>`Importes por hora de pago en ${m[1]}.`],
+    [/^(.+): (.+) in paid cash receipts\.$/,m=>`${translate(m[1])}: ${m[2]} en cobros en efectivo.`],
+    [/^(.+): (\d+) sold$/,m=>`${m[1]}: ${m[2]} vendidos`],[/^Showing the top 5 of (\d+) items sold\.$/,m=>`Se muestran los 5 principales de ${m[1]} productos vendidos.`],
+    [/^(\d+) (?:receipts? (?:is|are)|incomplete or inconsistent cash receipts? (?:is|are)) excluded\.$/,m=>`${m[1]} cobros excluidos.`],
+    [/^(\d+) menu changes? logged today$/,m=>`${count(m[1],'cambio registrado','cambios registrados')} hoy`],
+    [/^(\d+) items? shown · (\d+) in stock · (\d+) out of stock$/,m=>`${count(m[1],'producto','productos')} · ${m[2]} disponibles · ${m[3]} agotados`],
+    [/^(.+) in stock$/,m=>`${m[1]} disponible`],[/^Delete (.+)\?$/,m=>`¿Eliminar ${m[1]}?`],[/^Delete (.+)$/,m=>`Eliminar ${m[1]}`],[/^Edit (.+)$/,m=>`Editar ${m[1]}`],
+    [/^Edit price for (.+)$/,m=>`Editar precio de ${m[1]}`],[/^Customize (.+)$/,m=>`Personalizar ${m[1]}`],[/^(.+) changed from$/,m=>`${m[1]} cambió de`],
+    [/^(.+) marked (in stock|out of stock)$/,m=>`${m[1]} marcado como ${m[2]==='in stock'?'disponible':'agotado'}`],
+    [/^(\d+) cash transactions? shown · unpaid orders are excluded$/,m=>`${count(m[1],'transacción','transacciones')} en efectivo · pedidos sin pagar excluidos`],
+    [/^Showing (\d+)–(\d+) of (.+) transactions?$/,m=>`Mostrando ${m[1]}–${m[2]} de ${m[3]} transacciones`],
+    [/^Tendered (.+) · Change (.+)$/,m=>`Recibido ${m[1]} · Cambio ${m[2]}`],[/^(.+) tax collected$/,m=>`${m[1]} de impuesto`],
+    [/^Today, (.+)$/,m=>`Hoy, ${m[1]}`],[/^Yesterday, (.+)$/,m=>`Ayer, ${m[1]}`],[/^Tendered (.+)$/,m=>`Recibido ${m[1]}`],[/^Change (.+)$/,m=>`Cambio ${m[1]}`],
+    [/^• (.+)$/,m=>`• ${auditActions[m[1]]||m[1]}`],[/^Page (\d+)$/,m=>`Página ${m[1]}`],[/^Exported (\d+) transactions? to (.+)\.$/,m=>`Se exportaron ${m[1]} transacciones a ${m[2]}.`],[/^(.+) is no longer on the menu\. Rebuild this order before taking payment\.$/,m=>`${m[1]} ya no está en el menú. Rehaz el pedido antes de cobrar.`],
+    [/^Opened (.+)$/,m=>`Abierto ${translate(m[1])}`],
+    [/^(Short|Over|Balanced) (.+)$/,m=>`${{Short:'Faltante',Over:'Sobrante',Balanced:'Cuadrado'}[m[1]]} ${m[2]}`],
+    [/^(\d+) Items?$/,m=>`${count(m[1],'producto','productos')}`],[/^Add to Order - (.+)$/,m=>`Agregar al pedido - ${m[1]}`],[/^(.+) Base Price$/,m=>`${m[1]} precio base`],
+    [/^View your cart, (\d+) items?, (.+)$/,m=>`Ver tu carrito, ${count(m[1],'producto','productos')}, ${m[2]}`],
+    [/^Usually ready in about (\d+) min$/,m=>`Suele estar listo en unos ${m[1]} min`],[/^Table (\d+)$/,m=>`Mesa ${m[1]}`],
+    [/^(Decrease|Increase) (.+) quantity$/,m=>`${m[1]==='Decrease'?'Reducir':'Aumentar'} cantidad de ${m[2]}`],[/^Remove (.+)$/,m=>`Quitar ${m[1]}`]
+  );
+  let locale = 'es';
+  try { const requested=new URLSearchParams(location.search).get('lang'); const saved=localStorage.getItem('masaflow.locale'); locale=['es','en'].includes(requested)?requested:['es','en'].includes(saved)?saved:'es'; localStorage.setItem('masaflow.locale',locale); } catch (_) {}
+  const listeners = new Set();
+  function translate(value) {
+    const string=String(value ?? ''); if(locale==='en')return string;
+    const match=string.match(/^(\s*)([\s\S]*?)(\s*)$/), text=match[2];
+    let translated=dictionary[text];
+    if(translated===undefined)for(const [pattern,replace] of patterns){const found=text.match(pattern);if(found){translated=replace(found);break;}}
+    return translated===undefined?string:match[1]+translated+match[3];
+  }
+  function t(key,params={}) { let value=translate(key); for(const [name,replacement] of Object.entries(params))value=value.replaceAll(`{${name}}`,String(replacement));return value; }
+  const textSources=new WeakMap(), attributeSources=new WeakMap();
+  function apply(root=document.body) {
+    if(!root)return; document.documentElement.lang=locale;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); let node;
+    while((node=walker.nextNode())){
+      if(node.parentElement?.closest('script,style,textarea,[data-i18n-skip]'))continue;
+      const previous=textSources.get(node), source=previous&&node.nodeValue===previous.rendered?previous.source:node.nodeValue;
+      const rendered=translate(source); textSources.set(node,{source,rendered});if(node.nodeValue!==rendered)node.nodeValue=rendered;
+    }
+    for(const element of root.querySelectorAll('[placeholder],[aria-label],[title]')){
+      if(element.closest('[data-i18n-skip]'))continue;
+      const record=attributeSources.get(element)||{};
+      for(const attribute of ['placeholder','aria-label','title']){
+        if(!element.hasAttribute(attribute))continue;const current=element.getAttribute(attribute),previous=record[attribute],source=previous&&current===previous.rendered?previous.source:current,rendered=translate(source);record[attribute]={source,rendered};if(current!==rendered)element.setAttribute(attribute,rendered);
+      }attributeSources.set(element,record);
+    }
+  }
+  function setLocale(next) {
+    if(!['es','en'].includes(next))return;locale=next;try{localStorage.setItem('masaflow.locale',locale);}catch(_){}
+    const control=document.getElementById('mf-language');if(control)control.value=next;
+    apply(); for(const listener of listeners)listener(locale);document.dispatchEvent(new CustomEvent('masaflow:locale',{detail:{locale}}));apply();
+  }
+  window.MasaFlowI18n={catalog:dictionary,getLocale:()=>locale,t,setLocale,subscribe:listener=>{listeners.add(listener);return()=>listeners.delete(listener);},translate,apply};
+  // Shared canonical catalog also supplies the React analytics module. The inline
+  // catalog preserves immediate/offline rendering while the local asset loads.
+  fetch('/assets/masaflow-catalog.json').then(response=>response.ok?response.json():null).then(catalog=>{
+    if(catalog?.html?.es){Object.assign(dictionary,catalog.html.es);apply();}
+  }).catch(()=>{});
+  function start(){
+    const control=document.createElement('label');control.className='mf-language';control.innerHTML='<span>Idioma / Language</span><select id="mf-language" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option></select>';
+    const host=document.querySelector('[data-mf-language-host]')||document.querySelector('.header-actions,.q-header-actions,.l-drawer-tools,.menu-toolbar,.tracking-actions')||document.body;
+    host.append(control);document.getElementById('mf-language').value=locale;document.getElementById('mf-language').addEventListener('change',event=>setLocale(event.target.value));
+    let pending=false;const observer=new MutationObserver(()=>{if(pending)return;pending=true;queueMicrotask(()=>{pending=false;observer.disconnect();apply();observer.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['placeholder','aria-label','title']});});});
+    apply();observer.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['placeholder','aria-label','title']});
+    window.addEventListener('storage',event=>{if(event.key==='masaflow.locale')setLocale(event.newValue);});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();

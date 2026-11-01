@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasaFlow — Menu Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/masaflow.css">
+  <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest' };</script>
+  <script defer src="/assets/vendor/fa-solid.min.js"></script>
+  <script defer src="/assets/vendor/fontawesome.min.js"></script>
+  <script defer src="/assets/masaflow-store.js"></script>
+  <script defer src="/assets/masaflow-i18n.js"></script>
+  <script defer src="/assets/masaflow-ui.js"></script>
+</head>
+<body data-mf-shell class="bg-stone-50 text-stone-900 min-h-screen md:flex md:h-screen md:overflow-hidden">
+
+  <!-- Phone top bar -->
+  <header id="mobile-header" data-mf-noprint class="md:hidden fixed top-0 left-0 right-0 z-bar bg-stone-900 text-white px-4 py-3 flex items-center justify-between border-b border-stone-800 shadow-lg">
+    <a href="businessDashbord.html" class="flex items-center gap-3" aria-label="MasaFlow order queue">
+      <span class="bg-orange-600 p-2 rounded-xl"><i class="fa-solid fa-fire-flame-curved text-lg" aria-hidden="true"></i></span>
+      <span class="text-xl font-bold tracking-tight">MasaFlow</span>
+    </a>
+    <div class="flex items-center gap-4">
+      <a data-mf-bell href="businessDashbord.html#awaiting-cash" class="relative w-10 h-10 flex items-center justify-center text-stone-400" aria-label="Orders awaiting cash">
+        <i class="fa-solid fa-bell text-xl" aria-hidden="true"></i>
+        <span data-mf-bell-dot hidden class="absolute top-2 right-2 w-2.5 h-2.5 bg-orange-600 rounded-full border-2 border-stone-900"></span>
+      </a>
+      <a data-mf-cashier href="history.html#drawer" class="w-10 h-10 rounded-full border border-stone-700 flex items-center justify-center text-[11px] font-bold text-stone-300" aria-label="Cash drawer"><i class="fa-solid fa-cash-register text-sm" aria-hidden="true"></i></a>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" data-mf-noprint class="hidden md:flex w-20 bg-stone-900 flex-col items-center py-8 gap-10 border-r border-stone-800 flex-shrink-0" aria-label="MasaFlow navigation">
+    <a href="businessDashbord.html" class="bg-orange-500 text-white p-3 rounded-2xl shadow-lg shadow-orange-900/50" aria-label="MasaFlow order queue"><i class="fa-solid fa-fire-flame-curved text-xl" aria-hidden="true"></i></a>
+    <nav class="flex flex-col gap-8 flex-1" aria-label="Main navigation">
+      <a href="businessDashbord.html" class="mf-nav-link"><i class="fa-solid fa-receipt text-xl" aria-hidden="true"></i><span class="mf-nav-label">Orders</span></a>
+      <a href="metricsDashbord.html" class="mf-nav-link"><i class="fa-solid fa-chart-pie text-xl" aria-hidden="true"></i><span class="mf-nav-label">Metrics</span></a>
+      <a href="MenuManagment.html" class="mf-nav-link" aria-current="page"><i class="fa-solid fa-utensils text-xl" aria-hidden="true"></i><span class="mf-nav-label">Menu</span></a>
+      <a href="history.html" class="mf-nav-link"><i class="fa-solid fa-clock-rotate-left text-xl" aria-hidden="true"></i><span class="mf-nav-label">History</span></a>
+    </nav>
+    <div class="mt-auto flex flex-col items-center gap-8">
+      <a href="MenuUI.html" class="mf-nav-link"><i class="fa-solid fa-plus text-xl" aria-hidden="true"></i><span class="mf-nav-label">New</span></a>
+      <a href="readypickupUI.html" class="mf-nav-link"><i class="fa-solid fa-bell-concierge text-xl" aria-hidden="true"></i><span class="mf-nav-label">Pickup</span></a>
+      <a data-mf-cashier href="history.html#drawer" class="w-10 h-10 rounded-full border-2 border-stone-700 flex items-center justify-center text-[11px] font-bold text-stone-300 hover:border-orange-500 hover:text-white transition-colors" aria-label="Cash drawer"><i class="fa-solid fa-cash-register text-sm" aria-hidden="true"></i></a>
+    </div>
+  </aside>
+
+  <main class="flex-1 min-w-0 flex flex-col md:h-screen md:overflow-hidden pt-20 pb-24 md:pt-0 md:pb-0">
+
+    <!-- Top Header -->
+    <header class="bg-white border-b border-stone-200 px-4 md:px-8 py-4 flex flex-wrap md:flex-nowrap items-center justify-between gap-4 md:gap-8 flex-shrink-0">
+      <div class="w-full md:w-auto md:flex-1 max-w-2xl relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" aria-hidden="true"></i>
+        <label class="sr-only" for="menu-search">Search menu items</label>
+        <input id="menu-search" data-testid="menu-search" type="search" autocomplete="off" placeholder="Search menu items, categories, or descriptions..." class="w-full pl-12 pr-4 py-3 md:py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:bg-white outline-none transition-all text-sm">
+      </div>
+      <div class="flex items-center gap-4 w-full md:w-auto" data-mf-language-host>
+        <a data-mf-bell href="businessDashbord.html#awaiting-cash" class="relative w-10 h-10 rounded-xl border border-stone-100 hidden md:flex items-center justify-center text-stone-600 hover:bg-stone-50 transition-colors" aria-label="Orders awaiting cash">
+          <i class="fa-solid fa-bell" aria-hidden="true"></i>
+          <span data-mf-bell-dot hidden class="absolute top-2 right-2 w-2 h-2 bg-orange-600 rounded-full border-2 border-white"></span>
+        </a>
+        <button id="open-history" data-testid="open-menu-history" type="button" aria-label="Menu history and audit log" aria-describedby="history-count-note" aria-haspopup="dialog" class="relative group w-11 h-11 md:w-10 md:h-10 rounded-xl border border-stone-100 flex items-center justify-center text-stone-600 hover:bg-stone-50 transition-colors">
+          <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+          <span id="history-count" hidden class="absolute -top-1 -right-1 min-w-[16px] text-center bg-orange-600 text-white text-[8px] font-bold px-1 py-0.5 rounded-full border border-white group-hover:scale-110 transition-transform"></span>
+        </button>
+        <span id="history-count-note" class="sr-only"></span>
+        <button id="add-item" data-testid="add-menu-item" type="button" aria-haspopup="dialog" class="ml-auto md:ml-0 bg-stone-900 hover:bg-stone-800 text-white font-medium rounded-xl px-5 py-2.5 shadow-sm flex items-center gap-2 transition-all">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          Add New Item
+        </button>
+      </div>
+    </header>
+
+    <!-- Category & Content -->
+    <div class="flex-1 md:overflow-y-auto custom-scrollbar p-4 md:p-8">
+
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 mb-1">
+        <h1 id="page-title" tabindex="-1" class="text-3xl font-bold text-stone-800 flex-shrink-0 outline-none">Menu Management</h1>
+        <div id="categories" role="group" aria-label="Filter menu by category" class="flex items-center gap-2 overflow-x-auto no-scrollbar min-w-0 pt-2 -mt-2 pb-2 px-4 -mx-4 md:px-2 md:-mx-2"></div>
+      </div>
+      <p id="inventory-summary" aria-live="polite" class="text-xs font-medium text-stone-400 mb-3 min-h-[16px]"></p>
+
+      <!-- Menu Grid -->
+      <section id="menu-grid" data-testid="menu-grid" aria-label="Menu items" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></section>
+    </div>
+  </main>
+
+  <!-- Add / Edit drawer. A modal <dialog> docked to the right edge stands in for the mockup's translate-x slide-over. -->
+  <dialog id="item-dialog" aria-labelledby="item-dialog-title" class="m-0 ml-auto h-dvh max-h-dvh w-full max-w-lg bg-white shadow-2xl border-l border-stone-200 backdrop:bg-stone-900/20 backdrop:backdrop-blur-sm">
+    <form id="item-form" class="h-full min-h-0 flex flex-col">
+      <div class="p-6 md:p-8 border-b border-stone-100 flex items-center justify-between gap-4 flex-shrink-0">
+        <h2 id="item-dialog-title" class="text-2xl font-bold text-stone-800">Add New Item</h2>
+        <button id="close-item-dialog" type="button" aria-label="Close item editor" class="w-11 h-11 md:w-10 md:h-10 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-400 transition-colors flex-shrink-0 disabled:opacity-50">
+          <i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="flex-1 min-h-0 overflow-y-auto p-6 md:p-8 custom-scrollbar space-y-6">
+        <div aria-hidden="true">
+          <p class="mf-field-label">Live Preview</p>
+          <div class="bg-white rounded-3xl p-4 shadow-sm border border-stone-100 flex gap-4 items-center">
+            <div id="preview-image" class="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 bg-orange-50 text-orange-300 flex items-center justify-center"></div>
+            <div class="flex-1 min-w-0">
+              <p id="preview-category" class="text-[10px] font-bold text-stone-400 uppercase tracking-widest truncate"></p>
+              <p id="preview-title" class="font-bold text-stone-800 truncate"></p>
+              <p id="preview-desc" class="text-xs text-stone-400 mt-1 line-clamp-1"></p>
+              <div class="flex items-center justify-between mt-3">
+                <span id="preview-price" class="text-orange-600 font-bold"></span>
+                <span class="w-8 h-8 rounded-full bg-stone-900 text-white flex items-center justify-center shadow-lg"><i class="fa-solid fa-plus text-xs"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="mf-field-label" for="item-name">Item Title</label>
+          <input id="item-name" name="name" type="text" required maxlength="100" autocomplete="off" data-testid="item-name" class="mf-input">
+        </div>
+        <div>
+          <label class="mf-field-label" for="item-category">Category</label>
+          <input id="item-category" name="category" type="text" list="menu-categories" required maxlength="50" autocomplete="off" data-testid="item-category" class="mf-input">
+          <datalist id="menu-categories"></datalist>
+        </div>
+        <div>
+          <label class="mf-field-label" for="item-price">Base Price (MXN)</label>
+          <input id="item-price" name="price" type="text" inputmode="decimal" placeholder="0.00" required autocomplete="off" aria-describedby="item-price-hint" data-testid="item-price" class="mf-input">
+          <p id="item-price-hint" class="text-xs text-stone-500 mt-2">Use pesos and centavos, for example 85.00</p>
+        </div>
+        <div>
+          <label class="mf-field-label" for="item-description">Description</label>
+          <textarea id="item-description" name="description" maxlength="500" rows="3" data-testid="item-description" class="mf-input resize-y min-h-[96px]"></textarea>
+        </div>
+        <div>
+          <label class="mf-field-label" for="item-image">Image URL <span class="font-medium normal-case tracking-normal">(optional)</span></label>
+          <input id="item-image" name="image" type="url" placeholder="https://…" maxlength="2000" autocomplete="off" data-testid="item-image" class="mf-input">
+        </div>
+        <div>
+          <label class="mf-field-label" for="item-included">Included Toppings</label>
+          <input id="item-included" name="included" type="text" autocomplete="off" aria-describedby="item-included-hint" data-testid="item-included" class="mf-input">
+          <p id="item-included-hint" class="text-xs text-stone-400 mt-2">Customers can remove these. Example: Cilantro, Chopped Onion, Limes</p>
+        </div>
+        <label id="availability-field" for="item-available" class="flex items-center gap-3 min-h-[50px] bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-stone-700 cursor-pointer">
+          <input id="item-available" type="checkbox" checked data-testid="item-available" class="w-5 h-5 accent-orange-600 flex-shrink-0">
+          In stock
+        </label>
+        <fieldset id="modifier-editor" hidden class="min-w-0">
+          <legend class="mf-field-label">Modifier prices &amp; availability</legend>
+          <div id="modifier-fields" class="space-y-2"></div>
+        </fieldset>
+        <p class="text-xs text-stone-400 leading-relaxed">Finalized receipts keep their original prices. Mark an item out of stock when you cannot make it.</p>
+      </div>
+
+      <div class="p-6 md:p-8 bg-stone-50 border-t border-stone-100 space-y-3 flex-shrink-0">
+        <p id="item-form-error" role="alert" hidden class="bg-red-50 border border-red-100 text-red-700 text-sm font-medium rounded-xl px-4 py-3"></p>
+        <p id="currency-migration-note" hidden class="bg-orange-50 border border-orange-100 text-orange-800 text-sm font-medium rounded-xl px-4 py-3">Legacy USD prices. Enter the intended MXN prices before saving; no currency conversion is applied.</p>
+        <button id="save-item" type="submit" data-testid="save-menu-item" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-2xl shadow-xl shadow-orange-100 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-wait">Add Item</button>
+        <button id="cancel-item" type="button" class="w-full text-stone-400 hover:text-stone-600 font-bold text-sm py-3 md:py-2 transition-colors disabled:opacity-50">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- History & Audit Log drawer -->
+  <dialog id="history-drawer" aria-labelledby="history-title" class="m-0 ml-auto h-dvh max-h-dvh w-full max-w-md bg-white shadow-2xl border-l border-stone-200 backdrop:bg-stone-900/20 backdrop:backdrop-blur-sm">
+    <div class="h-full min-h-0 flex flex-col p-6">
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <h2 id="history-title" class="text-xl font-bold text-stone-800">History &amp; Audit Log</h2>
+        <button id="close-history" type="button" aria-label="Close menu history" class="w-11 h-11 md:w-8 md:h-8 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-400 transition-colors flex-shrink-0">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Filters -->
+      <div id="log-filters" role="group" aria-label="Filter menu history" class="flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0 mb-6 pt-2 -mt-2 pb-2 px-2 -mx-2">
+        <button type="button" data-log-filter="all" aria-pressed="true" class="bg-stone-900 text-white rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">All Logs</button>
+        <button type="button" data-log-filter="price" aria-pressed="false" class="bg-stone-100 text-stone-600 hover:bg-stone-200 rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-colors">Price Changes</button>
+        <button type="button" data-log-filter="stock" aria-pressed="false" class="bg-stone-100 text-stone-600 hover:bg-stone-200 rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-colors">Stock 86'd</button>
+        <button type="button" data-log-filter="added" aria-pressed="false" class="bg-stone-100 text-stone-600 hover:bg-stone-200 rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-colors">Added Items</button>
+      </div>
+
+      <!-- Timeline Feed -->
+      <ul id="menu-audit" data-testid="menu-audit" tabindex="-1" class="flex-1 min-h-0 overflow-y-auto custom-scrollbar space-y-1 outline-none"></ul>
+    </div>
+  </dialog>
+
+  <!-- Phone tab bar -->
+  <nav id="mobile-nav" data-mf-noprint class="md:hidden fixed bottom-0 left-0 right-0 z-bar bg-white border-t border-stone-100 px-6 py-2 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" aria-label="Main navigation">
+    <a href="businessDashbord.html" class="mf-tab-link"><i class="fa-solid fa-receipt text-xl" aria-hidden="true"></i><span class="mf-tab-label">Orders</span></a>
+    <a href="metricsDashbord.html" class="mf-tab-link"><i class="fa-solid fa-chart-pie text-xl" aria-hidden="true"></i><span class="mf-tab-label">Metrics</span></a>
+    <a href="MenuManagment.html" class="mf-tab-link" aria-current="page"><i class="fa-solid fa-utensils text-xl" aria-hidden="true"></i><span class="mf-tab-label">Menu</span></a>
+    <a href="history.html" class="mf-tab-link"><i class="fa-solid fa-clock-rotate-left text-xl" aria-hidden="true"></i><span class="mf-tab-label">History</span></a>
+    <a href="MenuUI.html" class="mf-tab-link"><i class="fa-solid fa-plus text-xl" aria-hidden="true"></i><span class="mf-tab-label">New</span></a>
+  </nav>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const M = window.MasaFlow;
+      const UI = window.MasaFlowUI;
+      const el = id => document.getElementById(id);
+      const grid = el('menu-grid');
+      const gridNote = text => `<div class="col-span-full border-2 border-dashed border-stone-200 rounded-2xl px-6 py-12 text-center text-sm text-stone-400">${text}</div>`;
+      if (!M || !UI) { grid.innerHTML = gridNote('Menu service unavailable. Refresh this page to reconnect.'); return; }
+
+      const esc = UI.escape;
+      const ALL = 'All Items';
+      const PULSE_MS = 10 * 60 * 1000;
+      const itemDialog = el('item-dialog');
+      const historyDrawer = el('history-drawer');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let category = ALL, logFilter = 'all', editingId = null, editorOptions = [], busy = false, pulseTimer = 0, previewTimer = 0;
+      const brokenImages = new Set();
+      const openers = new Map();
+      const painted = new Map();
+
+      // Class lists are written in full so the Tailwind build can see them.
+      const CHIP = {
+        true: 'bg-stone-900 text-white rounded-full px-5 py-3 md:py-2 text-sm font-medium whitespace-nowrap',
+        false: 'bg-stone-200/70 text-stone-700 hover:bg-stone-300 rounded-full px-5 py-3 md:py-2 text-sm font-medium whitespace-nowrap transition-colors'
+      };
+      const LOG_CHIP = {
+        true: 'bg-stone-900 text-white rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap',
+        false: 'bg-stone-100 text-stone-600 hover:bg-stone-200 rounded-full px-4 py-1.5 min-h-[44px] md:min-h-0 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-colors'
+      };
+      const CARD = {
+        true: 'bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all group flex flex-col',
+        false: 'bg-white rounded-2xl border border-stone-200 p-5 shadow-sm opacity-50 grayscale transition-all relative flex flex-col'
+      };
+      const PENCIL_ON_HOVER = 'fa-solid fa-pencil text-[10px] hidden md:inline opacity-0 group-hover/price:opacity-100 group-focus-within/price:opacity-100 transition-opacity';
+      const PRICE = {
+        normal: { button: 'flex items-center gap-2 text-orange-600 font-bold text-xl px-2 py-2 md:py-1 rounded-lg hover:bg-orange-50 transition-colors', pencil: PENCIL_ON_HOVER },
+        pulse: { button: 'flex items-center gap-2 text-orange-600 font-bold text-xl px-2 py-2 md:py-1 rounded-lg bg-orange-50 price-pulse', pencil: 'fa-solid fa-pencil text-[10px]' },
+        out: { button: 'flex items-center gap-2 text-stone-400 font-bold text-xl px-2 py-2 md:py-1 rounded-lg hover:bg-stone-100 transition-colors', pencil: PENCIL_ON_HOVER }
+      };
+      const STOCK = {
+        true: { label: 'In Stock', text: 'text-[10px] font-bold text-emerald-600 uppercase tracking-widest', track: 'bg-emerald-500', knob: 'right-0.5' },
+        false: { label: 'Out of Stock', text: 'text-[10px] font-bold text-stone-400 uppercase tracking-widest', track: 'bg-stone-300', knob: 'left-0.5' }
+      };
+      const TAG = {
+        true: 'bg-stone-100 text-stone-500 text-[10px] font-semibold px-2 py-1 rounded-md',
+        false: 'bg-stone-100 text-stone-300 line-through text-[10px] font-semibold px-2 py-1 rounded-md'
+      };
+      const ICON_BUTTON = 'w-11 h-11 md:w-10 md:h-10 -my-1.5 rounded-lg flex items-center justify-center text-stone-400 transition-colors';
+      const LOG_TONE = {
+        price: { tile: 'bg-green-50 text-green-600', icon: 'fa-dollar-sign' },
+        stockOut: { tile: 'bg-red-50 text-red-600', icon: 'fa-triangle-exclamation' },
+        stockIn: { tile: 'bg-green-50 text-green-600', icon: 'fa-circle-check' },
+        added: { tile: 'bg-orange-50 text-orange-600', icon: 'fa-plus' },
+        deleted: { tile: 'bg-red-50 text-red-600', icon: 'fa-trash-can' },
+        edited: { tile: 'bg-stone-100 text-stone-500', icon: 'fa-pencil' }
+      };
+      const LOG_FILTER = {
+        all: () => true,
+        price: entry => entry.action === 'menu_price',
+        stock: entry => entry.action === 'menu_stock',
+        added: entry => entry.action === 'menu_add'
+      };
+      const LOG_ACTION = {
+        'undo-price': { label: 'Undo', icon: 'fa-rotate-left' },
+        'restore-stock': { label: 'Restore Stock', icon: 'fa-circle-check' },
+        'delete-item': { label: 'Delete Item', icon: 'fa-trash-can' }
+      };
+
+      // Skips the DOM write when nothing changed, so unrelated updates (a new order) do not reload photos or restart the price pulse.
+      function paint(node, html) {
+        if (painted.get(node) === html) return;
+        painted.set(node, html); node.innerHTML = html;
+      }
+      const menuUpdated = message => UI.toast(message, '', 'Menu Updated');
+      const findItem = (id, state = M.getState()) => state.menu.find(item => item.id === id) || null;
+
+      /* ---------- Focus ---------- */
+      // Rendering replaces the buttons, so focus is remembered by what the control does, not by node.
+      function focusKey(node) {
+        if (!node || !node.dataset) return null;
+        if (node.id) return { id: node.id };
+        const data = node.dataset;
+        if (data.availability) return { attr: 'data-availability', value: data.availability };
+        if (data.delete) return { attr: 'data-delete', value: data.delete };
+        if (data.edit) return { attr: 'data-edit', value: data.edit, testid: data.testid || '' };
+        if (data.category) return { attr: 'data-category', value: data.category };
+        if (data.logAction) return { attr: 'data-log-id', value: data.logId };
+        return null;
+      }
+      function restoreFocus(key) {
+        if (!key) return false;
+        const target = key.id ? el(key.id) : [...document.querySelectorAll(`[${key.attr}]`)].find(node => node.getAttribute(key.attr) === key.value && (key.testid === undefined || (node.dataset.testid || '') === key.testid));
+        if (target) target.focus();
+        return Boolean(target);
+      }
+      // When the control that had focus is gone (its dish was deleted, its undo was used), focus lands on the region it lived in.
+      function refocus(key) {
+        if (!restoreFocus(key)) (historyDrawer.open ? el('menu-audit') : el('page-title')).focus({ preventScroll: true });
+      }
+      const focusLost = () => !document.activeElement || document.activeElement === document.body;
+
+      /* ---------- Drawers ---------- */
+      // A modal dialog sits in the top layer, above every z-index, so toasts move into the open drawer to stay visible.
+      const toasts = document.querySelector('.mf-toast-host') || Object.assign(document.createElement('div'), { className: 'mf-toast-host' });
+      toasts.setAttribute('aria-live', 'polite');
+      if (!toasts.isConnected) document.body.append(toasts);
+
+      function openDrawer(dialog, focusTarget) {
+        openers.set(dialog, focusKey(document.activeElement));
+        dialog.showModal();
+        dialog.append(toasts);
+        if (!reducedMotion.matches) dialog.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], { duration: 300, easing: 'ease-out' });
+        focusTarget.focus();
+      }
+      const locked = dialog => busy && dialog === itemDialog;
+      function closeDrawer(dialog) {
+        if (locked(dialog) || !dialog.open) return;
+        document.body.append(toasts);
+        dialog.close();
+      }
+      function wireDrawer(dialog) {
+        const outside = event => {
+          const box = dialog.getBoundingClientRect();
+          return event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+        };
+        // Both the press and the release must land on the backdrop, so dragging a text selection out of a field never discards the form.
+        let pressedOutside = false;
+        dialog.addEventListener('pointerdown', event => { pressedOutside = event.target === dialog && outside(event); });
+        dialog.addEventListener('click', event => {
+          if (pressedOutside && event.target === dialog && outside(event)) closeDrawer(dialog);
+          pressedOutside = false;
+        });
+        dialog.addEventListener('cancel', event => { if (locked(dialog)) event.preventDefault(); });
+        dialog.addEventListener('close', () => {
+          document.body.append(toasts);
+          refocus(openers.get(dialog));
+        });
+      }
+      wireDrawer(itemDialog);
+      wireDrawer(historyDrawer);
+
+      /* ---------- Menu grid ---------- */
+      function optionTag(option) {
+        const label = option.group === 'extras' ? `+ ${esc(option.name)}${option.priceCents ? ` ${M.money(option.priceCents, option.currency)}` : ''}` : esc(option.name);
+        return `<span class="${TAG[Boolean(option.available)]}">${label}${option.available ? '' : '<span class="sr-only"> (out of stock)</span>'}</span>`;
+      }
+      function cardHtml(item, pulsing) {
+        const id = esc(item.id), name = esc(item.name), inStock = Boolean(item.available);
+        const stock = STOCK[inStock];
+        const price = PRICE[inStock ? (pulsing ? 'pulse' : 'normal') : 'out'];
+        const picture = item.imageUrl && !brokenImages.has(item.imageUrl)
+          ? `<img class="w-24 h-24 rounded-xl object-cover" src="${esc(item.imageUrl)}" alt="" loading="lazy">`
+          : '<div class="w-24 h-24 rounded-xl bg-orange-50 text-orange-300 flex items-center justify-center"><i class="fa-solid fa-utensils text-2xl" aria-hidden="true"></i></div>';
+        const soldOut = inStock ? '' : '<div class="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center"><span class="bg-red-600 text-white text-[10px] font-bold text-center px-2 py-1 rounded-md shadow-lg"><span class="whitespace-nowrap">SOLD OUT</span> <span class="whitespace-nowrap">FOR TODAY</span></span></div>';
+        const tags = (item.options || []).map(optionTag).join('') || `<span class="${TAG.true}">No modifiers</span>`;
+        return `<article data-menu-id="${id}" data-testid="menu-item" class="${CARD[inStock]}">
+          <div class="flex gap-5 mb-4">
+            <div class="relative flex-shrink-0">${picture}${soldOut}</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-1 md:max-lg:flex-col md:max-lg:items-stretch md:max-lg:gap-1">
+                <h3 class="text-stone-900 font-bold text-lg truncate" title="${name}">${name}</h3>
+                <span class="bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-widest rounded-md px-2 py-0.5 flex-shrink-0 max-w-[50%] truncate md:max-lg:self-start md:max-lg:max-w-full">${esc(item.category)}</span>
+              </div>
+              ${item.description ? `<p class="text-stone-500 text-sm line-clamp-2 leading-relaxed">${esc(item.description)}</p>` : '<p class="text-stone-400 text-sm line-clamp-2 leading-relaxed">No description added.</p>'}
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-5">${tags}</div>
+          <div class="flex flex-wrap items-center justify-between gap-y-2 pt-4 border-t border-stone-50 mt-auto">
+            <div class="relative group/price">
+              <button type="button" data-edit="${id}" aria-label="Edit price for ${name}" class="${price.button}">${M.money(item.priceCents, item.currency)}<i class="${price.pencil}" aria-hidden="true"></i></button>
+            </div>
+            <div class="flex items-center gap-4 ml-auto">
+              <div class="flex items-center gap-2">
+                <span class="${stock.text}" aria-hidden="true">${stock.label}</span>
+                <button type="button" role="switch" aria-checked="${inStock}" data-availability="${id}" data-testid="item-availability" aria-label="${name} in stock" class="w-10 h-5 ${stock.track} rounded-full relative transition-colors before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] disabled:opacity-60 disabled:cursor-wait"><span class="absolute ${stock.knob} top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></span></button>
+              </div>
+              <div class="flex items-center border-l border-stone-100 pl-1 -mr-3">
+                <button type="button" data-edit="${id}" data-testid="edit-menu-item" aria-label="Edit ${name}" class="${ICON_BUTTON} hover:text-stone-600"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                <button type="button" data-delete="${id}" data-testid="delete-menu-item" aria-label="Delete ${name}" class="${ICON_BUTTON} hover:text-red-500"><i class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </article>`;
+      }
+      function renderMenu(state) {
+        const categories = [...new Set(state.menu.map(item => item.category))].sort();
+        if (category !== ALL && !categories.includes(category)) category = ALL;
+        paint(el('categories'), [ALL, ...categories].map(name => `<button type="button" data-category="${esc(name)}" aria-pressed="${category === name}" class="${CHIP[category === name]}">${esc(name)}</button>`).join(''));
+        paint(el('menu-categories'), categories.map(name => `<option value="${esc(name)}"></option>`).join(''));
+
+        const query = el('menu-search').value.trim().toLocaleLowerCase();
+        const items = state.menu.filter(item => (category === ALL || item.category === category) && `${item.name} ${item.category} ${item.description}`.toLocaleLowerCase().includes(query));
+        const inStock = state.menu.filter(item => item.available).length;
+        el('inventory-summary').textContent = `${items.length} ${items.length === 1 ? 'item' : 'items'} shown · ${inStock} in stock · ${state.menu.length - inStock} out of stock`;
+
+        // A price edited in the last ten minutes keeps the mockup's pulsing price; a timer clears it when it ages out.
+        const now = Date.now();
+        const recent = state.audit.filter(entry => entry.action === 'menu_price' && entry.data && now - Date.parse(entry.at) < PULSE_MS);
+        const pulsing = new Set(recent.map(entry => entry.data.menuItemId));
+        clearTimeout(pulseTimer);
+        if (recent.length) pulseTimer = setTimeout(render, Math.max(1000, Math.min(...recent.map(entry => Date.parse(entry.at) + PULSE_MS - now)) + 500));
+
+        const empty = state.menu.length ? 'No menu items match this view. Try another search or category, or add a new item.' : 'No menu items yet. Use Add New Item to create the first dish.';
+        paint(grid, items.length ? items.map(item => cardHtml(item, pulsing.has(item.id))).join('') : gridNote(empty));
+      }
+
+      /* ---------- History & audit log ---------- */
+      function logTime(at) {
+        const date = new Date(at);
+        if (!Number.isFinite(date.getTime())) return 'Time unavailable';
+        if (UI.dayKey(date) === UI.dayKey(new Date())) return UI.time(at);
+        const day = new Intl.DateTimeFormat(MasaFlowI18n.getLocale() === 'en' ? 'en-US' : 'es-MX', { timeZone: M.getState().settings.timeZone || 'America/Mexico_City', month: 'short', day: 'numeric' }).format(date);
+        return `${day}, ${UI.time(at)}`;
+      }
+      function logTone(entry) {
+        if (entry.action === 'menu_price') return LOG_TONE.price;
+        if (entry.action === 'menu_stock') return (entry.data ? entry.data.available === false : /out of stock/i.test(entry.message)) ? LOG_TONE.stockOut : LOG_TONE.stockIn;
+        if (entry.action === 'menu_add') return LOG_TONE.added;
+        if (entry.action === 'menu_delete') return LOG_TONE.deleted;
+        return LOG_TONE.edited;
+      }
+      // Which follow-up an entry still offers, given the menu as it is now. Entries without `data` predate undo and offer none.
+      function logAction(entry, state) {
+        const data = entry.data;
+        const item = data && findItem(data.menuItemId, state);
+        if (!item) return null;
+        if (entry.action === 'menu_price' && Number.isSafeInteger(data.fromCents) && data.fromCents > 0 && item.priceCents === data.toCents) return 'undo-price';
+        if (entry.action === 'menu_stock' && data.available === false && !item.available) return 'restore-stock';
+        if (entry.action === 'menu_add') return 'delete-item';
+        return null;
+      }
+      function logHtml(entry, state) {
+        const tone = logTone(entry), data = entry.data || {}, kind = logAction(entry, state);
+        const sentence = entry.action === 'menu_price' && Number.isSafeInteger(data.fromCents) && Number.isSafeInteger(data.toCents)
+          ? `${esc(data.name)} changed from <span class="line-through text-stone-400">${M.money(data.fromCents, data.fromCurrency)}</span> to <span class="text-green-600">${M.money(data.toCents, data.currency)}</span>`
+          : `<span data-i18n-skip>${esc(entry.message)}</span>`;
+        const action = kind ? `<div class="mt-3 pl-11">
+            <button type="button" data-log-action="${kind}" data-log-id="${esc(entry.id)}" class="inline-flex items-center gap-1.5 min-h-[44px] md:min-h-0 bg-stone-100 hover:bg-stone-200 text-stone-800 text-[10px] font-bold px-3 py-1.5 rounded-lg transition-all border border-stone-200 disabled:opacity-60 disabled:cursor-wait"><i class="fa-solid ${LOG_ACTION[kind].icon}" aria-hidden="true"></i>${LOG_ACTION[kind].label}</button>
+          </div>` : '';
+        return `<li class="border-b border-stone-100 py-4 group" data-log-entry="${esc(entry.action)}">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg ${tone.tile} flex items-center justify-center flex-shrink-0"><i class="fa-solid ${tone.icon}" aria-hidden="true"></i></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-semibold text-stone-800 leading-tight break-words">${sentence}</p>
+              <p class="text-[10px] text-stone-400 font-medium mt-1 uppercase tracking-widest"><time datetime="${esc(entry.at)}">${esc(logTime(entry.at))}</time></p>
+            </div>
+          </div>
+          ${action}
+        </li>`;
+      }
+      function renderHistory(state) {
+        // Reversed first so entries logged in the same millisecond still read newest first.
+        const logs = [...state.audit].reverse().filter(entry => String(entry.action).startsWith('menu_') || entry.action === 'modifier_edit').sort((a, b) => new Date(b.at) - new Date(a.at));
+        const today = UI.dayKey(new Date());
+        const todayCount = logs.filter(entry => UI.dayKey(entry.at) === today).length;
+        el('history-count').hidden = !todayCount;
+        el('history-count').textContent = todayCount > 99 ? '99+' : String(todayCount);
+        el('history-count-note').textContent = `${todayCount} menu ${todayCount === 1 ? 'change' : 'changes'} logged today`;
+        document.querySelectorAll('[data-log-filter]').forEach(chip => {
+          const active = chip.dataset.logFilter === logFilter;
+          chip.setAttribute('aria-pressed', String(active)); chip.className = LOG_CHIP[active];
+        });
+        const shown = logs.filter(LOG_FILTER[logFilter]).slice(0, 50);
+        paint(el('menu-audit'), shown.length ? shown.map(entry => logHtml(entry, state)).join('') : '<li class="py-10 text-center text-sm text-stone-400">No menu changes recorded yet.</li>');
+      }
+
+      function render() {
+        const state = M.getState();
+        const focused = document.activeElement, key = focusKey(focused);
+        renderMenu(state);
+        renderHistory(state);
+        // A control that vanished on its own (another device deleted its dish) only pulls focus back inside the open drawer.
+        if (focused && !focused.isConnected && !restoreFocus(key) && historyDrawer.open) el('menu-audit').focus({ preventScroll: true });
+      }
+
+      /* ---------- Add / edit drawer ---------- */
+      const saveLabel = () => editingId ? 'Save Changes' : 'Add Item';
+      function showFormError(message) {
+        el('item-form-error').textContent = message; el('item-form-error').hidden = !message;
+      }
+      function updatePreview() {
+        el('preview-title').textContent = el('item-name').value.trim() || 'New menu item';
+        el('preview-category').textContent = el('item-category').value.trim() || 'Category';
+        el('preview-desc').textContent = el('item-description').value.trim() || 'The description shows here.';
+        let cents = 0;
+        try { cents = M.parseMoney(el('item-price').value); } catch (_) { /* keep $0.00 until the price is valid */ }
+        el('preview-price').textContent = M.money(cents);
+      }
+      function updatePreviewImage() {
+        const url = el('item-image').value.trim();
+        const usable = /^https?:\/\/\S+$/i.test(url) && !brokenImages.has(url);
+        paint(el('preview-image'), usable ? `<img class="w-full h-full object-cover" src="${esc(url)}" alt="">` : '<i class="fa-solid fa-utensils text-2xl"></i>');
+      }
+      function modifierRow(option, index) {
+        return `<div class="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-xl pl-4 pr-2 py-1.5">
+          <label for="option-available-${index}" class="flex items-center gap-3 flex-1 min-w-0 min-h-[44px] text-sm font-semibold text-stone-700 cursor-pointer">
+            <input type="checkbox" id="option-available-${index}"${option.available ? ' checked' : ''} data-testid="modifier-availability" class="w-5 h-5 accent-orange-600 flex-shrink-0">
+            <span class="truncate">${esc(option.name)}</span>
+          </label>
+          <label class="sr-only" for="option-price-${index}">${esc(option.name)} price in MXN</label>
+          <div class="relative w-28 flex-shrink-0">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-stone-400" aria-hidden="true">$</span>
+            <input type="text" inputmode="decimal" id="option-price-${index}" value="${(option.priceCents / 100).toFixed(2)}" required autocomplete="off" data-testid="modifier-price" class="w-full bg-white border border-stone-200 rounded-lg pl-7 pr-3 py-3 text-sm font-semibold text-right focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+          </div>
+        </div>`;
+      }
+      function openEditor(id = null, focusId = 'item-name') {
+        const item = id ? findItem(id) : null;
+        if (id && !item) { UI.toast('That menu item is no longer available.', 'error'); return; }
+        editingId = item ? item.id : null;
+        editorOptions = item ? [...(item.options || [])] : [];
+        el('item-form').reset(); showFormError('');
+        el('item-dialog-title').textContent = item ? 'Edit Menu Item' : 'Add New Item';
+        el('save-item').textContent = saveLabel();
+        el('item-name').value = item ? item.name : '';
+        el('item-category').value = item ? item.category : '';
+        el('item-price').value = item ? (item.priceCents / 100).toFixed(2) : '';
+        el('item-description').value = item ? item.description || '' : '';
+        el('item-image').value = item ? item.imageUrl || '' : '';
+        el('item-included').value = item ? (item.included || []).join(', ') : '';
+        el('item-available').checked = item ? Boolean(item.available) : true;
+        el('availability-field').hidden = !item;
+        el('currency-migration-note').hidden = !item || (item.currency === M.getState().settings.currency && editorOptions.every(option => option.currency === item.currency));
+        el('modifier-editor').hidden = !editorOptions.length;
+        el('modifier-fields').innerHTML = editorOptions.map(modifierRow).join('');
+        updatePreview(); updatePreviewImage();
+        openDrawer(itemDialog, el(focusId));
+        if (focusId === 'item-price') el('item-price').select();
+      }
+      function readOptionEdits() {
+        return editorOptions.map((option, index) => {
+          let priceCents;
+          try { priceCents = M.parseMoney(el(`option-price-${index}`).value); } catch (_) { priceCents = NaN; }
+          if (!Number.isSafeInteger(priceCents) || priceCents < 0) throw new Error(`Enter a valid price for ${option.name}.`);
+          return { id: option.id, priceCents, available: el(`option-available-${index}`).checked };
+        });
+      }
+      async function saveItem(event) {
+        event.preventDefault();
+        if (busy) return;
+        showFormError('');
+        try {
+          const name = el('item-name').value.trim(), itemCategory = el('item-category').value.trim();
+          if (!name || !itemCategory) throw new Error('Enter an item name and category.');
+          const priceCents = M.parseMoney(el('item-price').value);
+          if (!Number.isSafeInteger(priceCents) || priceCents <= 0) throw new Error('Enter a price greater than zero with no more than two decimal places.');
+          const imageUrl = el('item-image').value.trim();
+          if (imageUrl && !/^https?:\/\//i.test(imageUrl)) throw new Error('Image URLs must start with https:// or http://.');
+          const included = el('item-included').value.split(',').map(topping => topping.trim()).filter(Boolean);
+          if (included.length > 12) throw new Error('List at most 12 included toppings.');
+          if (new Set(included.map(topping => topping.toLowerCase())).size !== included.length) throw new Error('Included toppings must be unique.');
+          const options = readOptionEdits();
+
+          busy = true;
+          el('save-item').disabled = true; el('save-item').textContent = 'Saving…';
+          el('cancel-item').disabled = true; el('close-item-dialog').disabled = true;
+          const values = { name, category: itemCategory, priceCents, description: el('item-description').value.trim(), imageUrl, included };
+          let message = `${name} added at ${M.money(priceCents)}`;
+          if (editingId) {
+            const before = findItem(editingId);
+            await M.updateMenuItem(editingId, { ...values, available: el('item-available').checked });
+            for (const option of options) {
+              const previous = editorOptions.find(value => value.id === option.id);
+              // A modifier still priced in a legacy currency is re-saved so it adopts the current one.
+              if (previous.currency !== M.getState().settings.currency || previous.priceCents !== option.priceCents || previous.available !== option.available) await M.updateMenuOption(editingId, option.id, { priceCents: option.priceCents, available: option.available });
+            }
+            message = before && before.priceCents !== priceCents ? `${name} changed to ${M.money(priceCents)}` : `${name} updated`;
+          } else await M.addMenuItem(values);
+          busy = false;
+          closeDrawer(itemDialog);
+          menuUpdated(message);
+          render();
+        } catch (error) { showFormError(error.message || 'Could not save this item. Try again.'); }
+        finally {
+          busy = false;
+          el('save-item').disabled = false; el('save-item').textContent = saveLabel();
+          el('cancel-item').disabled = false; el('close-item-dialog').disabled = false;
+        }
+      }
+
+      /* ---------- Actions ---------- */
+      // Disables the control while its change is saved. Chrome drops focus from a disabled button, so focus is handed to the re-rendered control afterwards.
+      async function whileDisabled(button, work) {
+        const key = focusKey(button), hadFocus = document.activeElement === button;
+        button.disabled = true;
+        try {
+          await work();
+          render();
+          if (hadFocus && focusLost()) refocus(key);
+        } catch (error) {
+          UI.toast(error.message || 'Could not update the menu. Try again.', 'error');
+          button.disabled = false;
+          if (hadFocus && focusLost()) button.focus();
+        }
+      }
+      function toggleStock(toggle) {
+        const item = findItem(toggle.dataset.availability);
+        if (!item) return;
+        whileDisabled(toggle, async () => {
+          await M.updateMenuItem(item.id, { available: !item.available });
+          menuUpdated(`${item.name} marked ${item.available ? 'out of stock' : 'in stock'}`);
+        });
+      }
+      async function deleteItem(id, button) {
+        const item = findItem(id);
+        if (!item) { UI.toast('That menu item is no longer available.', 'error'); return; }
+        const confirmed = await UI.confirm({ title: `Delete ${item.name}?`, message: 'It disappears from the customer menu right away. Past orders keep their record. Unpaid orders containing it must be rebuilt.', confirmLabel: 'Delete item', danger: true });
+        if (!confirmed) return;
+        whileDisabled(button, async () => {
+          await M.deleteMenuItem(item.id);
+          menuUpdated(`${item.name} removed from the menu`);
+        });
+      }
+      function runLogAction(button) {
+        const state = M.getState();
+        const entry = state.audit.find(value => value.id === button.dataset.logId);
+        const kind = entry ? logAction(entry, state) : null;
+        if (!kind || kind !== button.dataset.logAction) { UI.toast('That change can no longer be undone here.', 'error'); render(); return; }
+        const item = findItem(entry.data.menuItemId, state);
+        if (kind === 'delete-item') { deleteItem(item.id, button); return; }
+        whileDisabled(button, async () => {
+          if (kind === 'undo-price') {
+            await M.updateMenuItem(item.id, { priceCents: entry.data.fromCents });
+            menuUpdated(`Reverted • ${item.name} restored to ${M.money(entry.data.fromCents, entry.data.fromCurrency)}`);
+          } else {
+            await M.updateMenuItem(item.id, { available: true });
+            menuUpdated(`${item.name} marked in stock`);
+          }
+        });
+      }
+
+      /* ---------- Wiring ---------- */
+      el('add-item').addEventListener('click', () => openEditor());
+      el('open-history').addEventListener('click', () => openDrawer(historyDrawer, el('close-history')));
+      el('close-history').addEventListener('click', () => closeDrawer(historyDrawer));
+      el('close-item-dialog').addEventListener('click', () => closeDrawer(itemDialog));
+      el('cancel-item').addEventListener('click', () => closeDrawer(itemDialog));
+      el('item-form').addEventListener('submit', saveItem);
+      el('item-form').addEventListener('input', event => {
+        showFormError(''); updatePreview();
+        if (event.target.id !== 'item-image') return;
+        // Wait for a pause in typing so half-typed addresses are not requested.
+        clearTimeout(previewTimer); previewTimer = setTimeout(updatePreviewImage, 400);
+      });
+      el('menu-search').addEventListener('input', render);
+      el('categories').addEventListener('click', event => {
+        const chip = event.target.closest('[data-category]');
+        if (chip) { category = chip.dataset.category; render(); }
+      });
+      el('log-filters').addEventListener('click', event => {
+        const chip = event.target.closest('[data-log-filter]');
+        if (chip) { logFilter = chip.dataset.logFilter; render(); }
+      });
+      el('menu-audit').addEventListener('click', event => {
+        const button = event.target.closest('[data-log-action]');
+        if (button && !button.disabled) runLogAction(button);
+      });
+      grid.addEventListener('click', event => {
+        const edit = event.target.closest('[data-edit]');
+        if (edit) { openEditor(edit.dataset.edit, edit.dataset.testid === 'edit-menu-item' ? 'item-name' : 'item-price'); return; }
+        const remove = event.target.closest('[data-delete]');
+        if (remove && !remove.disabled) { deleteItem(remove.dataset.delete, remove); return; }
+        const toggle = event.target.closest('[data-availability]');
+        if (toggle && !toggle.disabled) toggleStock(toggle);
+      });
+      // Image errors do not bubble, so they are caught on the way down; a failed photo falls back to the utensils tile.
+      const dropBrokenImage = repaint => event => {
+        if (event.target.tagName !== 'IMG') return;
+        brokenImages.add(event.target.getAttribute('src'));
+        repaint();
+      };
+      grid.addEventListener('error', dropBrokenImage(render), true);
+      el('preview-image').addEventListener('error', dropBrokenImage(updatePreviewImage), true);
+
+      // Render confirmed service state only (the browser store starts from the seed menu), and again on a language change.
+      M.subscribe(() => { if (M.getConnection().hasConfirmedState) render(); });
+      MasaFlowI18n.subscribe(() => { if (M.getConnection().hasConfirmedState) render(); });
+      try { await M.ready; render(); }
+      catch (error) { grid.innerHTML = gridNote('Unable to load the menu. Refresh this page to reconnect.'); }
+    });
+  </script>
+</body>
+</html>
