@@ -26,7 +26,8 @@
     "legacy:restore": "node scripts/data.cjs restore",
     "legacy:startup:enable": "node scripts/mac-login.cjs install",
     "legacy:startup:disable": "node scripts/mac-login.cjs uninstall",
-    "legacy:startup:status": "node scripts/mac-login.cjs status"
+    "legacy:startup:status": "node scripts/mac-login.cjs status",
+    "build:vercel": "npm run build && node scripts/vercel-preview.cjs"
   },
   "engines": {
     "node": ">=22.12"
